@@ -1,0 +1,37 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Programas:
+    type: entity
+    table: Programas
+    fields:
+        id_programa:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_programa
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+        duracion_desde:
+            type: time
+            nullable: false
+            column: duracion_desde
+        duracion_hasta:
+            type: time
+            nullable: false
+            column: duracion_hasta
+    manyToOne:
+        id_programacion:
+            targetEntity: Programaciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_programacion:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

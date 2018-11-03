@@ -1,0 +1,27 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\SecurityLog:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        username:
+            type: string
+            length: '50'
+        error:
+            type: boolean
+        block:
+            type: boolean
+        hora:
+            type: time
+        ip_remota:
+            type: string
+            length: '45'
+        contador:
+            type: integer
+        dia:
+            type: date
+
+    lifecycleCallbacks: {  }

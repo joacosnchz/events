@@ -1,0 +1,13 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}{{ emision.getNombre }}{% endblock %}
+
+{% block content %}
+
+<table border="1" cellpadding="5px">
+    <tr><td>Nro. Emisiones: </td><td>{{ emision.getNombre }}</td></tr>
+</table>
+
+<input type="button" name="back" value="Volver" onclick="window.location='{{ path('showEmisiones') }}'" />
+
+{% endblock %}

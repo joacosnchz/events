@@ -1,0 +1,117 @@
+/*** General Comienzo ***/
+body {
+    color:#FFF;
+	text-align:left;
+	font-family:sans-serif;
+	background:#F5F5E8  none repeat scroll 0 0;
+}
+a {
+	text-decoration:none
+}
+a {
+	color:#FFF
+}
+a:active {
+	color:#FFF;
+}
+a:hover {
+	color:#FFF;
+	text-decoration:none
+}
+a:visited {
+	color:#FFF
+}
+#space {
+	height:1.5px;
+}
+#colorred {
+	color:red;
+}
+#bigspace {
+	height:8px;
+}
+#back:hover {
+	background: url(../images/menu-bg.png) repeat-x;
+	border-radius: 5px;
+}
+#required {
+    font-weight: bold;
+    color:red;
+}
+#id {
+    float:right;
+    margin-top: -150px;
+}
+#texto {
+    width:100px;
+    max-width:100px;
+    display:block;
+    word-wrap: break-word;
+}
+
+.form tr {
+    height:32px;
+}
+
+#underlined {
+    text-decoration: underline;
+}
+
+#success {
+    background: url(../images/success-bg.png) repeat-x;
+    border: solid 1px #42DE23;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+#error {
+   background: url(../images/error-bg.png) repeat;
+   border: solid 1px #F01111;
+   border-radius: 5px;
+   padding: 1px; 
+}
+
+#boxhome {
+    text-align: center;
+    border-radius: 5px;
+    background-color: 87A3FF;
+    box-shadow: 0px 0px 5px #000;
+    width: 100px;
+    transition:box-shadow 1.2s;
+    -moz-transition:box-shadow 1.2s;
+    -webkit-transition:box-shadow 1.2s;
+    -ms-transition:box-shadow 1.2s;
+    -o-transition:box-shadow 1.2s;
+}
+
+#boxhome:hover {
+    text-align: center;
+    border-radius: 5px;
+    border-bottom-right-radius: 15px;
+    box-shadow-color: 87A3FF;
+    box-shadow: 0px 0px 15px #000;
+    width: 100px;
+}
+
+#txthome {
+    font-size: small;
+    text-align: center;
+}
+
+#salto {
+    PAGE-BREAK-AFTER: always;
+}
+
+button:hover {
+	box-shadow: 0px 0px 10px #84a3ff;
+}
+
+input:focus, textarea:focus, select:focus, option:focus {
+	box-shadow: 0px 0px 10px  #84a3ff;
+}
+
+.whiteback {
+    background-color: #FFF;
+    border-radius: 2px;
+}
+/*** General Final ***/

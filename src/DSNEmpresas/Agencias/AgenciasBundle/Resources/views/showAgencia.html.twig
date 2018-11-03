@@ -1,0 +1,62 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}{{ agencia.getNombre }} {{ agencia.getApellido }}{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $('#imagen, #cancelar').css({display: 'none'});
+    $('#imagen2').click(function(event){
+        event.preventDefault();
+
+        $('#imagen, #cancelar').css({display: 'table-row'});
+
+        $('#imagen').html(
+        '<td>{{ form_label(form.imagen) }}</td><td>{{ form_widget(form.imagen, {'required': true}) }}</td>'
+        );
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+        
+<form action="{{ path('showAgencia', {'nombrea': agencia.getIdAgencia, 'nombre': agencia.getNombre, '_format': 'html' }) }}" method="post" {{ form_enctype(form) }}>        
+    <table class="resp">
+        <tr><th colspan="2"><h3>Edición de agencias</h3></th></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.nombre) }}</td><td>{{ form_widget(form.nombre) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.apellido) }}</td><td>{{ form_widget(form.apellido) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.razonSocial) }}</td><td>{{ form_widget(form.razonSocial) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.direccion) }}</td><td>{{ form_widget(form.direccion) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.id_ciudad) }}</td><td>{{ form_widget(form.id_ciudad) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.telefono_particular) }}</td><td>{{ form_widget(form.telefono_particular) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.telefono_comercial) }}</td><td>{{ form_widget(form.telefono_comercial) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.celular) }}</td><td>{{ form_widget(form.celular) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
+            <tr style="height:32px;"><td>{{ form_label(form.is_active) }}</td><td>{{ form_widget(form.is_active) }}</td></tr>
+            <tr id="imagen"></tr>
+            <tr>
+            <td><button id="imagen2">Cambiar imagen</button></td>
+            <td><button id="cancelar">Cancelar</button></td>
+            </tr>
+    </table>
+
+    <hr>
+
+    Los campos marcados con un asterisco <span id="required">(*)</span> son obligatorios. <br>  
+    <input type="submit" value="aceptar"/>
+    <input type="button" name="back" value="Cancelar" onclick="window.location='{{ path('showAgencias') }}'" />
+</form>
+
+<script>
+$(function(){
+    $('#cancelar').click(function(event){
+        event.preventDefault();
+        $('#imagen').html('');
+        $('#cancelar').css({display: 'none'});
+    });
+});
+</script>
+
+
+{% endblock %}

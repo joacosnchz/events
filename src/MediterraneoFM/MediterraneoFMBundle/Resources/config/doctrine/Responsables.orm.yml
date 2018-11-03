@@ -1,0 +1,105 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Responsables:
+    type: entity
+    table: Responsables
+    fields:
+        id_responsable:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_responsable
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 35
+            fixed: false
+            nullable: false
+        apellido:
+            type: string
+            length: 35
+            fixed: false
+            nullable: false
+        direccion:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        telefono_particular:
+            type: string
+            length: 17
+            fixed: false
+            nullable: true
+            column: telefono_particular
+        telefono_comercial:
+            type: string
+            length: 17
+            fixed: false
+            nullable: false
+            column: telefono_comercial
+        celular:
+            type: string
+            length: 15
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        salt:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        is_active:
+            type: boolean
+            nullable: false
+            column: is_active
+        username:
+            type: string
+            length: 35
+            fixed: false
+            nullable: false
+            unique: true
+        password:
+            type: string
+            length: 35
+            fixed: false
+            nullable: true
+        roles:
+            type: string
+            length: 16
+            fixed: false
+            nullable: false
+        isLogged:
+            type: boolean
+            nullable: false
+            column: is_logged
+        loggedTime:
+            type: datetime
+            nullable: true
+            column: logged_time
+            
+    manyToOne:
+        id_agencia:
+            targetEntity: Agencias
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_agencia:
+                    referencedColumnName: id_agencia
+                    onDelete: CASCADE
+            orphanRemoval: false
+        id_ciudad:
+            targetEntity: Ciudades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ciudad:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,28 @@
+# Responsables entity
+showResponsable:
+  pattern : /admin/r/{nombre}/{nombre2}.{_format}
+  defaults: { _controller: ResponsablesBundle:Responsables:showOne }
+  requirements:
+      _format:  html
+insertResponsables:
+  pattern : /admin/responsables/new
+  defaults: { _controller: ResponsablesBundle:Responsables:insert }
+  requirements:
+        _method:  GET
+insertResponsablesSuccess:
+  pattern : /admin/responsables/new
+  defaults: { _controller: ResponsablesBundle:Responsables:insertSuccess }
+  requirements:
+        _method:  POST
+#showResponsables:
+  #pattern : /admin/responsables/show/{page}
+  #defaults: { _controller: ListadosBundle:Listados:showListado, page: 1, 'entidad': 'Responsables' }
+showResponsables:
+  pattern : /admin/responsables/show/{page}
+  defaults: { _controller: ResponsablesBundle:Responsables:show, page: 1 }
+deleteResponsable:
+  pattern: /admin/responsable/delete/{id}
+  defaults: { _controller: ResponsablesBundle:Responsables:delete }
+desactivarResponsable:
+  pattern: /admin/responsable/is_active/{id}
+  defaults: { _controller: ResponsablesBundle:Responsables:desactivar }

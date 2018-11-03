@@ -1,0 +1,43 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\CtasCtesClientes:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha:
+            type: date
+        concepto:
+            type: string
+            length: '100'
+            nullable: true
+        debe:
+            type: float
+            nullable: true
+        haber:
+            type: float
+            nullable: true
+    manyToOne:
+        idCliente:
+            targetEntity: Clientes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCliente:
+                    referencedColumnName: id_cliente
+                    onDelete: CASCADE
+            orphanRemoval: false
+        idTipoDocumento:
+            targetEntity: TiposDocumentos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idTipoDocumento:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

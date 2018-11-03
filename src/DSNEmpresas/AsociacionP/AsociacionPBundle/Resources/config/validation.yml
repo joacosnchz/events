@@ -1,0 +1,10 @@
+DSNEmpresas\AsociacionP\AsociacionPBundle\Entity\Asistentes:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: dni
+            message: 'El DNI ingresado ya existe en la base de datos.'
+    properties:
+        dni:
+            - Type:
+                type: integer
+                message: 'El dni debe contener solo caracteres numericos.'

@@ -1,0 +1,45 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Alta de responsables{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $( document ).tooltip();
+});
+</script>
+<script>
+$(function(){
+    var c = 0;
+    $('#mediterraneofm_mediterraneofmbundle_insertresponsablestype_password').live('keypress', function(event){
+        var keyCode = e.keyCode || e.which; 
+        if (keyCode != 8 && keyCode != 9 && keyCode != 13){
+            c = c + 1;
+        }
+        if(c = 12) {
+            alert('asd');
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<form action="{{ path('insertResponsablesSuccess') }}" method="post" {{ form_enctype(form) }}>
+
+    <table class="resp">
+        <tr><th colspan="2"><h3>Alta de responsables</h3></th></tr>
+        {% for form in form %}
+            <tr style="height:32px;"><td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+
+    Los campos marcados con un asterisco <span id="required">(*)</span> son obligatorios. <br>  
+    <input type="submit" value="aceptar"/>
+    <input type="reset" value="cancelar"/>
+</form>
+
+{% endblock %}

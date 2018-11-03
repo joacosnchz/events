@@ -1,0 +1,58 @@
+security:
+    encoders:
+        MediterraneoFM\MediterraneoFMBundle\Entity\Responsables: 
+            algorithm:        sha1
+            encode_as_base64: true
+            iterations:       1
+        Symfony\Component\Security\Core\User\UserInterface: plaintext
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        in_memory:
+            memory:
+                users:
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }            
+        user_db:
+            entity: { class: MediterraneoFM\MediterraneoFMBundle\Entity\Responsables, property: username }
+            
+        fos_userbundle:
+            id: fos_user.user_manager
+
+    firewalls:
+        main:
+            pattern: ^/
+            provider: user_db
+            #access_denied_url: /foo/error403
+            form_login:
+                login_path: /admin/login.html
+                check_path: /admin/login_check.html
+                remember_me: true
+                #always_use_default_target_path: true
+                success_handler: ccdn_user_security.component.authentication.handler.login_success_handler
+
+                always_use_default_target_path: false
+                default_target_path:            /
+                target_path_parameter:          _target_path
+                use_referer:                    true
+            logout:
+                path: /admin/logout.html
+                target: /admin/login.html
+                success_handler: ccdn_user_security.component.authentication.handler.logout_success_handler
+            remember_me:
+                key: 1800
+                lifetime: 1800
+                path: /.*
+                domain: ~
+            security: true
+            anonymous: true
+    access_control:
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: /asistentes/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login.html, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/superadmin, roles: ROLE_SUPER_ADMIN }
+        #- { path: ^/, roles: [ROLE_USER, ROLE_ADMIN, ROLE_SUPER_ADMIN] }

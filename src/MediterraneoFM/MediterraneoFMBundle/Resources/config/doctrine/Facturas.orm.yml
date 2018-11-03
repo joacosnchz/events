@@ -1,0 +1,93 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Facturas:
+    type: entity
+    table: Facturas
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        n_factura:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: n_factura
+        tipo_factura:
+            type: string
+            length: 2
+            fixed: false
+            nullable: true
+            column: tipo_factura
+        fecha:
+            type: date
+            nullable: false
+        nombre:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+        domicilio:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        cuit:
+            type: string
+            length: 12
+            fixed: false
+            nullable: true
+        remito_n:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: remito_n
+        iva:
+            type: string
+            length: 35
+            fixed: false
+            nullable: true
+        condicion_venta:
+            type: string
+            length: 20
+            fixed: false
+            nullable: false
+            column: condicion_venta
+        cantidad:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+        descripcion:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        p_unitario:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+            column: p_unitario
+        p_total:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: p_total
+        total:
+            type: integer
+            unsigned: false
+            nullable: false
+    manyToOne:
+        id_ciudad:
+            targetEntity: Ciudades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ciudad:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

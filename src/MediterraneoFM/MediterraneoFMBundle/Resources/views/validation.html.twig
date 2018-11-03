@@ -1,0 +1,15 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Errores{% endblock %}
+
+{% block content %}
+<h3>Posibles errores:</h3>
+<ul>
+{% for error in errors %}
+    <li>{{ error.message }}</li>
+{% endfor %}
+</ul>
+
+<input type="button" name="imprimir" value="Volver" onclick="javascript:window.history.go(-1);" id="volver">
+{% endblock %}
+

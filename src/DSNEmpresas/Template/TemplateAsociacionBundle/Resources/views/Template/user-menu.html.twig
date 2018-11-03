@@ -1,0 +1,45 @@
+{% block usermenu %}
+<script>
+    $(function() {
+        $('#logout').click(function() {
+            $('#dialog-logout').dialog('open');
+        });
+
+        $('#dialog-logout').dialog({
+            autoOpen: false,
+            resizable: false,
+            height:350,
+            modal: true,
+            buttons: {
+                Cancelar: function() {
+                    $( this ).dialog( "close" );
+                },
+                "Aceptar": function() {
+                    window.location="{{ path('fos_user_security_logout') }}";
+                }
+            }
+        });
+    });
+</script>
+
+<div id="dialog-logout" title="¿Está seguro?">
+    <p>Está a punto de cerrar sesión. <strong>¿Está seguro?</strong></p>
+</div>
+
+<div class="wrapper-user-menu">
+<ul>
+    <li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% for item in app.user.roles  %}{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}{% endfor %}
+                |
+            {% for item in app.user.roles  %} {% if item == 'ROLE_ADMIN' %} Administrador {% elseif item == 'ROLE_SUPER_ADMIN' %} Super Administrador {% else %} Agencia {% endif %} {% endfor %} |
+            <a href="#" id="logout">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                Bienvenido invitado ! | <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

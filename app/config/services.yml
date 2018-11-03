@@ -1,0 +1,15 @@
+imports:
+    - { resource: "@FOSUserBundle/Resources/config/services.yml" }
+
+services:
+    validator.isUnique:
+        class: MediterraneoFM\MediterraneoFMBundle\Validator\Constraints\IsUniqueValidator
+        arguments: ["@doctrine"]
+        tags:
+            - { name: validator.constraint_validator, alias: isUnique }
+
+    my.handler.session_idle:
+        class: FOS\UserBundle\Component\Authentication\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.context", "@router", @service_container]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

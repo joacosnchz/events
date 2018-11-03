@@ -1,0 +1,24 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Ciudades:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '50'
+    manyToOne:
+        idProvincia:
+            targetEntity: Provincias
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idProvincia:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

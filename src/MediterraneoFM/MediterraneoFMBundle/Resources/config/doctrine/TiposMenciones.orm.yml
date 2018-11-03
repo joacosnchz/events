@@ -1,0 +1,18 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\TiposMenciones:
+    type: entity
+    table: TiposMenciones
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nro_menciones:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nro_menciones
+            unique: true
+    lifecycleCallbacks: {  }

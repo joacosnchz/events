@@ -1,0 +1,7 @@
+parameters:
+#    mediterraneo_fm.example.class: MediterraneoFM\MediterraneoFMBundle\Example
+
+services:
+#    mediterraneo_fm.example:
+#        class: %mediterraneo_fm.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

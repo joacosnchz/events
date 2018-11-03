@@ -1,0 +1,176 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block js %}
+<style>
+.ui-progressbar {
+    position: absolute;
+    top: 4px;
+    position: relative;
+}
+.progress-label {
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
+</style>
+<script>
+$(function() {
+    $( "#informar" ).click(function() {
+        var progressbar = $( "#progressbar" ),
+        progressLabel = $( ".progress-label" );
+
+        progressbar.progressbar({
+            value: false,
+            change: function() {
+                progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+            },
+            complete: function() {
+                progressLabel.text( 'Completado!' );
+            }
+        });
+
+        function progress() {
+            var val = progressbar.progressbar( "value" ) || 0;
+            progressbar.progressbar( "value", val + 1 );
+            if ( val < 99 ) {
+                setTimeout( progress, 100 );
+            }
+        }
+
+        setTimeout( progress, 3000 );
+    });
+});
+</script>
+{% if app.user.isActive == 1 %}
+    <script>
+    $(function() {
+        var i;
+
+        $('.wrapper-content').map(function() {
+            i = $(this).width();
+        });
+
+        if(i > 500) {
+            $( "#dialog" ).dialog({
+                height: 500,
+                width: 750,
+                modal: true,
+                {% if app.session.get('pophome') == 0 %}
+                    autoOpen: true,
+                {{ app.session.set('pophome', 1) }}
+                {% else %}
+                    autoOpen: false,    
+                {% endif %}
+                show: {
+                    effect: "blind",
+                    duration: 1000
+                },
+                hide: {
+                    effect: "fade",
+                    duration: 1000
+                }
+            });
+
+            $( "#opener" ).click(function() {
+                $( "#dialog" ).dialog( "open" );
+            });
+        }
+    });
+    </script>
+{% endif %}
+
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{# Texto de los popup aca arriba para que aparezca al principio del body y no en el bottom #}
+<div id="option">
+<div id="dialog" title="Ordenes de publicidad vencidas">
+    <table class="resp" style="color: black;" cellspacing='8'>
+        <thead>
+            <tr><td>Vencidas:</td></tr>
+        </thead>
+        <tbody>
+            <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+            {% for item4 in ordenesmesant %}
+                <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item4.getIdOrdenPub }) }}" id="underlined">{{ item4.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item4.getIdOrdenPub.getIdCliente, 'nombre2': item4.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item4.getIdOrdenPub.getIdCliente.getNombre }}, {{ item4.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item4.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td align="center">{{ item4.Total|number_format(2, ',', '.') }}</td></tr>
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+    <hr>
+
+    <table class="resp" style="color: black;" cellspacing='8'>
+        <thead>
+            <tr><td colspan="3">Vencen en los proximos 10 dias:</td></tr>
+        </thead>
+        <tbody>
+            <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+            {% for item2 in ordenesdias %}
+                <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item2.getIdOrdenPub }) }}" id="underlined">{{ item2.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item2.getIdOrdenPub.getIdCliente, 'nombre2': item2.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item2.getIdOrdenPub.getIdCliente.getNombre }}, {{ item2.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item2.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td align="center">{{ item2.Total|number_format(2, ',', '.') }}</td></tr>
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</div>
+</div>
+
+    <section class="wrapper-content-left">
+        <h3>Bienvenidos!</h3>
+        <p><strong>Si usted es una agencia podrá utilizar las siguientes secciones:</strong></p>
+        <table class="resp" cellspacing="8px">
+        <tr>
+            <td><a href="{{ path('insertOrdenPub') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/orden.png') }}" alt="nuevaorden" /></div><div id="txthome">Nueva orden</div></div></a></td>
+            <td><a href="{{ path('showClientes') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/cliente.png') }}" alt="nuevocliente" /></div><div id="txthome">Clientes</div></div></a></td>
+            <td><a href="{{ path('showCtasCtes') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/cuentascorrientes.png') }}" alt="nuevocliente" /></div><div id="txthome">C/c Clientes</div></div></a></td>
+            <td><a href="{{ path('showOrdenesPub') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/ordenes.png') }}" alt="nuevocliente" /></div><div id="txthome">Ordenes</div></div></a></td>
+        </tr>
+        </table>
+
+        {% for item in app.user.roles %}
+        {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+        <p><strong>Si es administrador, también podrá ejercer de la siguiente manera:</strong></p>
+        <table class="resp" cellspacing="8px">
+        <tr>
+            <td><a href="{{ path('showEmisoras') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/emisora.png') }}" alt="nuevaemisora" /></div><div id="txthome">Emisoras</div></div></a></td>
+            <td><a href="{{ path('showResponsables') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/cliente.png') }}" alt="nuevoresp" /></div><div id="txthome">Responsables</div></div></a></td>
+            <td><a href="{{ path('showProgramas') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/programa.png') }}" alt="nuevoprograma" /></div><div id="txthome">Programas</div></div></a></td>
+            <td><a href="{{ path('showAgencias') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/agencia.png') }}" alt="nuevaagencia" /></div><div id="txthome">Agencias</div></div></a></td>
+        </tr>
+        <tr>
+            <td><a href="{{ path('showTarifas') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/tarifa.png') }}" alt="nuevatarifa" /></div><div id="txthome">Tarifas</div></div></a></td>
+            <td><a href="{{ path('showPautas') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/pauta.png') }}" alt="nuevapauta" /></div><div id="txthome">Pautas</div></div></a></td>
+            <td><a href="{{ path('showFacturas') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/factura.png') }}" alt="nuevafactura" /></div><div id="txthome">Facturas</div></div></a></td>
+            <td><a href="{{ path('showRecibos') }}"><div id="boxhome"><div id="imghome"><img src="{{ asset('bundles/template/images/recibo.png') }}" alt="nuevorecibo" /></div><div id="txthome">Recibos</div></div></a></td>
+        </tr>
+        </table>
+    {% endif %}
+    {% endfor %}
+    </section>
+    
+    <!-- Columna derecha -->
+    <div id="hidden">
+    <aside class="wrapper-content-right">
+        <div class="wrapper-content-right-box" cellpadding="5px">
+            <table class="resp" align="center">
+                <tr><th colspan="5">Alertas</th></tr>
+                <tr><td><a href="#" id="opener" ><span id="underlined">Vencimientos</span>&nbsp;<img src="{{ asset('bundles/template/images/lens.png') }}" alt="lupa" /></a></td></tr>
+            </table>
+
+            <table class="resp" align="center" cellpadding="5px">
+                <tr><th colspan="5">Actualizacion 1.9.7</th></tr>
+                <tr>
+                    <td>
+                        <p>29-01-14</p>Corrección de errores<br>
+                        <p>28-01-14</p>Cambiado el id_orden mostrado en el formulario de c/c de clientes por el nro_orden. Al liquidar a vendedores, el usuario puede ver el monto de las ordenes que aún no fueron cobradas. Corrección de errores.<br>
+                        <a href="{{ path('changelog') }}" ><span id="underlined">Leer m&aacute;s</span>&nbsp;<img src="{{ asset('bundles/template/images/lens.png') }}" alt="leermas" /></a>  
+                    </td>
+               </tr>
+            </table>
+        </div>
+    </aside>
+</div>
+
+{% endblock %}

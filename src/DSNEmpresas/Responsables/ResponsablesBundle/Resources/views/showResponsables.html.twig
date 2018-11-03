@@ -1,0 +1,54 @@
+{% extends 'ListadosBundle::listados.html.twig' %}
+
+{% block title %}Lista de responsables{% endblock %}
+
+{% block entidad %}responsables{% endblock %}
+
+{% block datos %}<td>Nombre</td><td>Apellido</td><td>Ciudad</td><td>Agencia</td><td id="option">Teléfono comercial</td><td id="option">Celular</td><td>Estado</td>{% endblock %}
+
+{% block datos_lista %}
+<td><input type="checkbox" name="link[]" value2="{{ item.getNombre }}-{{ item.getApellido }}" value="{{ item.getIdResponsable }}" id="{{ item.getIdResponsable }}" class="tf"></td>
+<td><a href="{{ path('showResponsable', {'nombre': item.getIdResponsable, 'nombre2': item.getNombre, '_format': 'html'}) }}" id="underlined">{{ item.getNombre }}</a></td>
+<td><a id="underlined" href="{{ path('showResponsable', {'nombre': item.getIdResponsable, 'nombre2': item.getApellido, '_format': 'html'}) }}">{{ item.getApellido }}</a></td>
+<td id="option">{{ item.getIdCiudad.getNombre }}</td>
+<td>{{ item.getIdAgencia.getRazonSocial }}</td>
+<td id="option">{{ item.getTelefonoComercial }}</td>
+<td id="option">{{ item.getCelular }}</td>
+<td align="center">{% if item.getIsActive == 1 %}<img src="{{ asset('bundles/template/images/tick.png') }}" />{% else %}<img src="{{ asset('bundles/template/images/publish_x.png') }}" />{% endif %}</td>
+{% endblock %}
+
+{% block botones %}
+<td><button name="nuevo" onclick="window.location='{{ path('insertResponsables') }}'" />Nuevo</button></td>
+<td><button id="borrar">Borrar</button></td>
+<td><button id="desactivar">Cambiar estado</button></td>
+<td><button id="editar">Editar</button></td>
+<td><button id="selectAll">Seleccionar todo</button</td>
+
+<script>
+$(function () {
+    $('#selectAll').toggle(
+        function() {
+            $('#list .tf').prop('checked', true);
+        },
+        function() {
+            $('#list .tf').prop('checked', false);
+        }
+    );
+});
+</script>
+{% endblock %}
+
+{% block mostrar %}
+Mostrar: 
+<form name="Responsables" action="{{ path('listado', {'entidad': 'Responsables', 'page': 1}) }}" method="POST">
+<input id="Responsables" name="Responsables" value="{{ app.session.get('Responsables') }}" size="1" maxlength="3">
+</form>
+{% endblock %}
+
+{% block pages %}{{ paginate(pager, 'showResponsables') }}{% endblock %}
+
+{% block borrar_route %}var route = "{{ path('deleteResponsable', { 'id': "PLACEHOLDER" }) }}";{% endblock %}
+
+{% block editar_route %}var route = "{{ path('showResponsable', { 'nombre': "PLACEHOLDER", 'nombre2': "PLACEHOLDER2", '_format': 'html' }) }}";{% endblock %}
+
+{% block desactivar_route %}var route = "{{ path('desactivarResponsable', { 'id': "PLACEHOLDER" }) }}";{% endblock %}

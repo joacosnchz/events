@@ -1,0 +1,63 @@
+code, pre {
+background:#EEEEEE none repeat scroll 0 0;
+color:#555555;
+}
+#top {
+background:#FFFFFF none repeat scroll 0 0;
+border-color:#EDEDE1;
+border-style:solid;
+border-width:25px 0;
+color:#333333;
+margin:0 auto;
+padding:15px;
+position:relative;
+width:788px;
+}
+.thumb img {
+background:#EEEEEE none repeat scroll 0 0;
+border:1px solid #AAAAAA;
+padding:5px;
+}
+.thumb:hover img {
+border-color:#777777;
+}
+#toc {
+background:#CCEAFF none repeat scroll 0 0;
+border:1px solid #0075D9;
+color:#333333;
+float:right;
+margin:0 0 40px 10px;
+padding:0 10px;
+width:250px;
+}
+
+.message {
+background:#00B0D8 no-repeat scroll 0 0;
+color:#FFFFFF;
+font-size:1.3em;
+line-height:1.4em;
+margin:0 auto 20px;
+position:relative;
+width:788px;
+}
+.message p {
+background:transparent no-repeat scroll 0 100%;
+margin:0;
+padding:20px;
+}
+
+.download-widget {
+border:1px solid #CCCCCC;
+position:relative;
+width:100%;
+}
+.download-widget td, .download-widget th {
+background:#EEEEEE none repeat scroll 0 0;
+margin:1px;
+padding:5px;
+}
+.download-widget th {
+background:#E0E0E0 none repeat scroll 0 0;
+font-weight:bold;
+text-align:left;
+}

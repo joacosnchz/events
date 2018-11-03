@@ -1,0 +1,27 @@
+showAgencia:
+  pattern : /admin/agencia/{nombrea}/{nombre}.{_format}
+  defaults: { _controller: AgenciasBundle:Agencias:showOne }
+  requirements:
+        _format: html
+insertAgencias:
+  pattern : /admin/agencias/new
+  defaults: { _controller: AgenciasBundle:Agencias:insert }
+  requirements:
+        _method:  GET
+insertAgenciasSuccess:
+  pattern : /admin/agencias/new
+  defaults: { _controller: AgenciasBundle:Agencias:insertSuccess }
+  requirements:
+        _method:  POST
+#showAgencias:
+  #pattern : /admin/agencias/show/{page}
+  #defaults: { _controller: ListadosBundle:Listados:showListado, page: 1, 'entidad': 'Agencias' }
+showAgencias:
+  pattern : /admin/agencias/show/{page}
+  defaults: { _controller: AgenciasBundle:Agencias:show, page: 1 }
+deleteAgencia:
+  pattern: /admin/agencia/delete/{id}
+  defaults: { _controller: AgenciasBundle:Agencias:delete }
+desactivarAgencia:
+  pattern: /admin/agencia/is_active/{id}
+  defaults: { _controller: AgenciasBundle:Agencias:desactivar }

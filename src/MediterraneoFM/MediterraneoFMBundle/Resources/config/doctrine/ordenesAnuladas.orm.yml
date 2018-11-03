@@ -1,0 +1,26 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\ordenesAnuladas:
+    type: entity
+    table: ordenes_anuladas
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        motivoAnula:
+            type: string
+            length: 255
+            column: motivo_anula
+    manyToOne:
+        idOrdenPub:
+            targetEntity: OrdenPub
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idOrdenPub:
+                    referencedColumnName: id_ordenpub
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

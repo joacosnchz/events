@@ -1,0 +1,22 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}{{ responsable.getNombre }} {{ responsable.getApellido }}{% endblock %}
+
+{% block content %}
+
+<form action="{{ path('showResponsable', {'nombre': responsable.getIdResponsable, 'nombre2': responsable.getNombre, '_format': 'html' }) }}" method="post" {{ form_enctype(form) }}>        
+    <table class="resp">
+        <tr><th colspan="2"><h3>Edición de responsables</h3></th></tr>
+        {% for form in form %}
+            <tr style="height:32px;"><td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+
+    Los campos marcados con un asterisco <span id="required">(*)</span> son obligatorios. <br>  
+    <input type="submit" value="aceptar"/>
+    <input type="button" name="back" value="Cancelar" onclick="window.location='{{ path('showResponsables') }}'" />
+</form>
+
+{% endblock %}

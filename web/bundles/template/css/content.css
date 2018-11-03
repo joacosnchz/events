@@ -1,0 +1,152 @@
+/*** Content Inicio ***/
+.wrapper-content {
+	padding:0.625em;
+	background-color:#557dff;
+	/*border-color:#2066AB;*/
+	width:80.5%;
+	min-width:80%;
+	margin: 0px auto 0 auto;
+    clear: none;
+    overflow: auto;
+}
+
+#onlyresp {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.wrapper-content {
+		border-bottom-left-radius: 0.3125em;
+    	border-bottom-right-radius: 0.3125em;
+		-moz-bottom-left-radius: 0.3125em;
+		-webkit-bottom-left-radius: 0.3125em;
+		-moz-bottom-right-radius: 0.3125em;
+		-webkit-bottom-right-radius: 0.3125em;
+	}
+
+	.resp td {
+		display: table-row;
+	}
+
+	textarea, select {
+		width: 85%;
+	}
+
+	input {
+		max-width: 85%;
+	}
+
+	#onlyresp {
+		display: inline;
+	}
+
+	#option {
+		display: none;
+	}
+
+	.wrapper-content-right {
+		display: none;
+	}
+
+	#dialog {
+		display: none;
+	}
+
+	div.ui-datepicker {
+	    font-size: 80%;
+	}
+}
+
+@media screen and (max-device-width: 480px) {
+	.wrapper-content {
+		border-bottom-left-radius: 0.3125em;
+    	border-bottom-right-radius: 0.3125em;
+		-moz-bottom-left-radius: 0.3125em;
+		-webkit-bottom-left-radius: 0.3125em;
+		-moz-bottom-right-radius: 0.3125em;
+		-webkit-bottom-right-radius: 0.3125em;
+	}
+
+	.resp td {
+		display: table-row;
+	}
+
+	textarea, select {
+		width: 85%;
+	}
+
+	input {
+		max-width: 85%;
+	}
+
+	#option {
+		display: none;
+	}
+
+	#onlyresp {
+		display: inline;
+	}
+
+	.wrapper-content-right {
+		display: none;
+	}
+
+	#dialog {
+		display: none;
+	}
+
+	div.ui-datepicker {
+	    font-size: 80%;
+	}
+}
+
+.wrapper-content li {
+	list-style: none
+}
+.wrapper-content table {
+	max-width: 100%;
+}
+.wrapper-content-left {
+    float: left;
+    width: 60%;
+    clear:both;
+	display: inline-block;
+}
+#hidden {
+    overflow: hidden;
+}
+.wrapper-content-right {
+    float: right;
+    width: 60%;
+    background-color: #466ef3;
+    border: 0.0625em solid #000;
+    clear: both;
+}
+.wrapper-content-right-box {
+    margin: 0.4em 1.7em 0 2em;
+}
+.wrapper-left {
+    margin-top: -0.625em;
+	float:left;
+	width: 6.25em;
+    border-right: 0.0625em solid #000;
+}
+.wrapper-pages {
+	text-align:left;
+}
+.wrapper-pages li{
+	display:inline-block;
+}
+.show a {
+    text-decoration: underline;
+}
+
+.listado {
+    border-color: #000;
+}
+
+.listado tr:hover {
+    background-color: #466ef3;
+    
+}
+/*** Content Final ***/

@@ -1,0 +1,150 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}Lista de coordenadas de atributos{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    function checkAll(checkname, bx) {
+        for (i = 0; i < checkname.length; i++){
+            checkname[i].checked = bx.checked? true:false;
+        }
+    }
+    function checkPage(bx){
+
+
+        var bxs = document.getElementByTagName ( "table" ).getElementsByTagName ( "link[]" ); 
+
+        for(i = 0; i < bxs.length; i++){
+            bxs[i].checked = bx.checked? true:false;
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice"><div id="success">
+            {{ flashMessage }}
+        </div></div>
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="flash-notice"><div id="error">
+            {{ flashMessage }}
+        </div></div>
+    {% endfor %}
+
+    <table class="resp" cellpadding="5%">
+        <tr><th colspan="5"><h3>Lista de coordenadas de atributos</h3></th></tr>
+    </table>
+
+    <fieldset>
+        <legend>Herramientas</legend>
+        <table class="resp">
+            <tr>
+                <td><button id="nuevo" onclick="window.location='{{ path('insertCoordenadas') }}'">Nuevo</button></td>
+                <td><button id="editar">Editar</button></td>
+                <td><button id="borrar">Borrar</button></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <div id="bigspace"></div>
+
+    <div id="message"></div>
+
+    <table class="resp" rules="rows" border="1" class="listado" bordercolor="#808080" frame="below" cellpadding="5%" name="table">
+    <form name="list00" id="myform" action="#">
+
+        <tr id="option">
+        <td>#</td><td><input type="checkbox" name="Check_ctr" value="yes" onClick="checkAll(document.list00, this)"></td>
+        <td>Atributo</td><td>Coordenada X</td><td>Coordenada Y</td><td>Fuente</td><td>Tamaño</td><td>Negrita</td><td>Cursiva</td>
+        </tr>
+            {% for item in pager.getResults %}
+                <tr id="list">
+                    <td id="option">{{ loop.index }}</td>
+                    <td><input type="checkbox" name="link[]" value="{{ item.getId }}" id="{{ item.getId }}" class="tf"></td>
+                    <td><a id="underlined" href="{{ path('showCoordenada', {'id': item.getId }) }}">{{ item.getAtributo }}</a></td>
+                    <td align="center">{{ item.getCordX|number_format(2, ',', '.') }}px</td>
+                    <td align="center">{{ item.getCordY|number_format(2, ',', '.') }}px</td>
+                    <td>{{ item.getFuente }}</td>
+                    <td align="center">{{ item.getTamano }}px</td>
+                    <td>{% if item.getNegrita == 1 %}Si{% else %}No{% endif %}</td>
+                    <td>{% if item.getCursiva == 1 %}Si{% else %}No{% endif %}</td>
+                </tr>
+            {% endfor %} 
+    </form>       
+    </table>
+
+    <script>
+    $(function() {
+        $('#editar').click(function() {
+            var ids;
+
+            ids = $('input[type=checkbox]:checked').map(function() {
+                return $(this).attr('value');
+            }).get();
+            
+            if(ids.length > 0) {
+                var route = "{{ path('showCoordenada', { 'id': "PLACEHOLDER" }) }}";
+                window.location = route.replace("PLACEHOLDER", ids);
+            }
+            else {
+                $( this ).dialog( "close" );
+                $( '#message ').html('<div id="error">Debe seleccionar un elemento de la lista.</div>');
+            }
+        });
+    });
+    </script>
+
+    <script>
+    $(function() {
+        $('#borrar').click(function() {
+            $( "#confirm-borrar" ).dialog( "open" );
+        });
+
+        $( "#confirm-borrar" ).dialog({
+            autoOpen: false,
+            resizable: false,
+            height:350,
+            modal: true,
+            buttons: {
+                Cancelar: function() {
+                    $( this ).dialog( "close" );
+                },
+                "Aceptar": function() {
+                    var ids;
+
+                    ids = $('input[type=checkbox]:checked').map(function() {
+                        return $(this).attr('value');
+                    }).get();
+                    
+                    if(ids.length > 0) {
+                        var route = "{{ path('deleteCoordenadas', { 'id': "PLACEHOLDER" }) }}";
+                        window.location = route.replace("PLACEHOLDER", ids);
+                    }
+                    else {
+                        $( this ).dialog( "close" );
+                        $( '#message ').html('<div id="error">Debe seleccionar un elemento de la lista.</div>');
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
+    <div id="confirm-borrar" title="¿ Está seguro ?">
+        <p>Está a punto de eliminar las coordenadas de un atributo.<br><span style="font-weight: bold">¿ Está seguro ?</span></p>
+    </div>
+
+    <div id="bigspace"></div>
+
+    Mostrar: <form name="Coordenadas" action="{{ path('showCoordenadas') }}" method="POST"><input id="Coordenadas" name="Coordenadas" value="{{ app.session.get('Coordenadas') }}" size="1" maxlength="3"></form>
+
+    <div class="wrapper-pages">
+        {% if pager.isPaginable %}
+            Paginación: {{ paginate(pager, 'showCoordenadas') }}
+        {% endif %}
+    </div>
+
+{% endblock %}

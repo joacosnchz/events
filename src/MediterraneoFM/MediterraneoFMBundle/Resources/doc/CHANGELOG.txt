@@ -1,0 +1,25 @@
+Última actualización: 05/04/13
+
+05-04-13:
+Se ha modificado el modulo de seguridad, para que las agencias solo puedan formular ordenes de publicidad y clientes; los administradores seguiran con las funciones completas.
+
+04-04-13:
+Se ha modificado la página principal del sistema, ahora tiene accesos directos a cada una de las altas disponibles. También ha sido agregado el módulo de checkeo de ordenes de publicidad, cada vez que un usuario ingresa a la página principal, automaticamente se muestran cuales son las ordenes de publicidad pendientes de pago.
+
+03-04-13:
+Se ha modificado el menú principal, ahora se muestra de forma más ordenada y modularizada según lo especificado por el cliente.
+
+18-03-13:
+Se ha implementado la barra de acciones en los listados para que la nevegabilidad sea más productiva. También ahora es posible editar cada uno de los items seleccionados.
+
+16-03-13:
+Para la mejor utilización del servicio, se ha implementado el modulo tooltip con instrucciones para el usuario en los formularios.
+
+12-03-13:
+Se ha implementado el módulo de búsqueda incremental en aquellos formularios que contienen el campo Ciudad.
+
+10-03-13:
+Se ha implementado el módulo de facturación (incluido en el la impresión de recibos y facturas), los invitamos a probarlos en:
+Facturas
+Recibos
+

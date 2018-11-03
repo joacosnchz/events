@@ -1,0 +1,13 @@
+DSNEmpresas\AsociacionP\AsociacionPBundle\Entity\Provincias:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: string
+            length: '50'
+    lifecycleCallbacks: {  }

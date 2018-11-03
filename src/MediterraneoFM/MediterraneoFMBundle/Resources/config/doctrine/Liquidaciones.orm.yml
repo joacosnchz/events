@@ -1,0 +1,25 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Liquidaciones:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        fecha:
+            type: date
+        total:
+            type: float
+    manyToOne:
+        idAgencia:
+            targetEntity: Agencias
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_agencia:
+                    referencedColumnName: id_agencia
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

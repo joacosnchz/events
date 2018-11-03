@@ -1,0 +1,55 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}Alta de Coordenadas de atributos{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $( document ).tooltip({
+        position: {
+            my: "top-35",
+            at: "top-35",
+        },
+    });
+});
+</script>
+<script>
+    function justNumbers(e) {
+        var keynum = window.event ? window.event.keyCode : e.which;
+        if ((keynum == 8) || (keynum == 46) || (keynum == 13))
+            return true;
+         
+        return /\d/.test(String.fromCharCode(keynum));
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	    <div class="flash-notice"><div id="success">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	{% for flashMessage in app.session.flashbag.get('error') %}
+	    <div class="flash-notice"><div id="error">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	<form action="{{ path('insertCoordenadas') }}" method="post" {{ form_enctype(form) }}>
+		<table>
+			<tr><th>Alta de coordenadas de atributos</th></tr>
+			{% for form in form %}
+				<tr><td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td></tr>
+			{% endfor %}
+		</table>
+	
+		<hr>
+		<p>Los campos marcados con un asterísco <span id="required">(*)</span> son obligatorios.</p>
+
+		<button type="submit">Aceptar</button>&nbsp;
+		<button type="reset" onclick="window.location='{{ path('insertCoordenadas') }}'">Cancelar</button>
+	</form>
+
+{% endblock %}

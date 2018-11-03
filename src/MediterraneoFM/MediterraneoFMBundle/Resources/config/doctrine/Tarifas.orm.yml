@@ -1,0 +1,37 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Tarifas:
+    type: entity
+    table: Tarifas
+    fields:
+        id_tarifa:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_tarifa
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 30
+            fixed: false
+            nullable: false
+        fecha_desde:
+            type: date
+            nullable: false
+            column: fecha_desde
+        fecha_hasta:
+            type: date
+            nullable: false
+            column: fecha_hasta
+    manyToOne:
+        id_emisora:
+            targetEntity: Emisoras
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_emisora:
+                    referencedColumnName: id_emisora
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

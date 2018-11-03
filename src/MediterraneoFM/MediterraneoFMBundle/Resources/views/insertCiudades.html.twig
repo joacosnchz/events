@@ -1,0 +1,29 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Alta de zonas{% endblock %}
+
+{% block content %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice"><div id="success">
+        {{ flashMessage }}
+    </div></div>
+{% endfor %}
+
+<form action="{{ path('insertCiudades') }}" method="post" {{ form_enctype(form) }}>
+
+    <table class="resp">
+        <tr><th colspan="2"><h3>Alta de zonas</h3></th></tr>
+                {% for form in form %}
+        <tr style="height:32px;"><td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td></tr>
+                {% endfor %}
+    </table>
+
+    <hr>
+
+    Los campos marcados con un asterisco <span id="required">(*)</span> son obligatorios. <br>  
+    <input type="submit" value="aceptar"/>
+    <input type="reset" value="cancelar"/>
+</form>
+
+{% endblock %}

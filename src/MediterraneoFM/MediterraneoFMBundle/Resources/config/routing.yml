@@ -1,0 +1,20 @@
+homepage:
+    pattern:  /home
+    defaults: { _controller: MediterraneoFMBundle:Home:home }
+    
+changelog:
+    pattern:  /changelog.html/{page}
+    defaults: { _controller: MediterraneoFMBundle:Home:changelog, page: 1 }
+    
+popup:
+    pattern: /popup.html
+    defaults: { _controller: MediterraneoFMBundle:Transform:pop }
+  
+# Ciudades entity
+insertCiudades:
+  pattern : /admin/ciudades/new
+  defaults: { _controller: MediterraneoFMBundle:Ciudades:insert }
+  
+test:
+  pattern: /superadmin/test
+  defaults: { _controller: MediterraneoFMBundle:Test:test }

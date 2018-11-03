@@ -1,0 +1,15 @@
+{% block header %}
+<header class="wrapper-header">
+    {% if app.user %}
+        <table class="tableHeader" style="background:url({{ asset('bundles/template/images/agencias/') }}{{ app.user.idagencia.path }}) no-repeat;">
+    {% else %}
+        <table class="tableHeader" style="background:url({{ asset('bundles/template/images/header2.jpg') }}) no-repeat;">
+    {% endif %}
+            <tr>
+                <td>
+                    <h2 align="center">{% block headertitle %}{% endblock %}</h2>
+                </td>
+            </tr>
+        </table>
+    </header>
+{% endblock %}

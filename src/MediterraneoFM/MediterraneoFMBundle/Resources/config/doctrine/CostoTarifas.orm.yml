@@ -1,0 +1,47 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\CostoTarifas:
+    type: entity
+    table: CostoTarifas
+    fields:
+        id_costotarifas:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_costotarifas
+            generator:
+                strategy: IDENTITY
+        duracion:
+            type: integer
+            unsigned: false
+            nullable: false
+        periodo:
+            type: string
+            length: 11
+            fixed: false
+            nullable: false
+        costo:
+            type: float
+            unsigned: false
+            nullable: false
+    manyToOne:
+        id_tipo_mencion:
+            targetEntity: TiposMenciones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_mencion:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+        id_tarifa:
+            targetEntity: Tarifas
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tarifa:
+                    referencedColumnName: id_tarifa
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

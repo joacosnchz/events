@@ -1,0 +1,46 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}Ingresar asistencia{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $( '#dsnempresas_asociacionp_asistentesbundle_insertasistencia_dni' ).tooltip({
+        position: {
+            my: "top-35",
+            at: "top-35",
+        },
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	    <div class="flash-notice"><div id="success">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	{% for flashMessage in app.session.flashbag.get('error') %}
+	    <div class="flash-notice"><div id="error">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	<form action="{{ path('insertAsistencia') }}" method="post" {{ form_enctype(form) }}>
+	<table>
+		<tr><th colspan="2">Ingresar asistencia</th></tr>
+		{% for form in form %}
+			<tr>
+				<td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<hr>
+
+	<p>Los campos marcados con un asterisco <span id="required">(*)</span> son obligatorios</p>
+	<button type="submit">Aceptar</button>&nbsp;<button type="reset">Cancelar</button>
+	</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Lista de {{ entity }}{% endblock %}
+
+{% block content %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice"><div id="success">
+        {{ flashMessage }}
+    </div></div>
+{% endfor %}
+
+<div id="bigspace"></div><div id="bigspace"></div>
+
+<table class="resp" border="1" class="show" cellpadding='5px'>
+    <tr><th colspan="5"><h3>Lista de {{ entity }}</h3></th></tr>
+</table>
+<p>En este momento no se han encontrado {{ entity }}</p>
+
+<input type="button" name="imprimir" value="Volver" onclick="javascript:window.history.go(-1);" id="volver">
+
+{% endblock %}

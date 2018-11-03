@@ -1,0 +1,28 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}Lista de {{ entity }}{% endblock %}
+
+{% block content %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice"><div id="success">
+        {{ flashMessage }}
+    </div></div>
+{% endfor %}
+
+<div id="bigspace"></div><div id="bigspace"></div>
+
+<table border="1" class="show" cellpadding='5px'>
+    <tr><th colspan="5"><h3>Lista de {{ entity }}</h3></th></tr>
+</table>
+<p>En este momento no se han encontrado {{ entity }}</p>
+
+{% set route = path(app.request.attributes.get('_route')) %}
+
+{# <button onclick="window.location='{{ route|replace({'show': 'new'}) }}'">Nuevo</button> #}
+<input type="button" name="imprimir" value="Volver" onclick="javascript:window.history.go(-1);" id="volver">
+{% if entity == 'Programas' or entity == 'Ordenes de publicidad' or entity == 'Costo de tarifas' %}
+	<button onclick="window.location='{{ path(app.request.attributes.get('_route')) }}/1/1'">Restablecer filtro</button>
+{% endif %}
+
+{% endblock %}

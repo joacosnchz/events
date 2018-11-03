@@ -1,0 +1,57 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\OrdenTarifas:
+    type: entity
+    table: orden_tarifas
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fecha_desde:
+            type: date
+            nullable: true
+            column: fecha_desde
+        fecha_hasta:
+            type: date
+            nullable: true
+            column: fecha_hasta
+        descuento:
+            type: float
+            unsigned: false
+            nullable: true
+        recargo:
+            type: float
+            unsigned: false
+            nullable: true
+        neto:
+            type: float
+            unsigned: false
+            nullable: true
+        total:
+            type: float
+            unsigned: false
+            nullable: true
+    manyToOne:
+        id_costotarifas:
+            targetEntity: CostoTarifas
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_costotarifas:
+                    referencedColumnName: id_costotarifas
+                    onDelete: CASCADE
+            orphanRemoval: false
+        id_ordenpub:
+            targetEntity: OrdenPub
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ordenpub:
+                    referencedColumnName: id_ordenpub
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

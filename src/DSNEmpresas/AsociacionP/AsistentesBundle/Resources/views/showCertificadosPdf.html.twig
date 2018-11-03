@@ -1,0 +1,16 @@
+{% for item in asistentes %}
+
+	<div>
+	{% for attr in coordenadas %}
+		<div style="position: absolute; left: {{ attr.getCordX }}px; padding-top: {{ attr.getCordY }}px; font-family:{{ attr.getFuente }}; {% if attr.getCursiva == 1 %}font-style:italic;{% endif %} {% if attr.getNegrita == 1 %}font-weight: bold;{% endif %} font-size:{{ attr.getTamano }}px;">
+			{{ attribute(item, attr.getAtributo) }}
+		</div>
+	{% endfor %}
+	</div>
+
+	{# SALTO DE PAGINA DESPUES DE UN CERTIFICADO, NO SE MUESTRA DESPUES DE LA ULTIMA ITERACION #}
+	{% if not loop.last %}
+		<span style="page-break-after:always"></span>
+	{% endif %}
+
+{% endfor %}

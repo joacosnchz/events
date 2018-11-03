@@ -1,0 +1,260 @@
+{% block menu %}
+
+    <nav class="wrapper-menu-in" id="navigation">
+        <ul>
+            <li>
+            {% if 'homepage' == app.request.attributes.get('_route') 
+            or app.request.attributes.get('_route') == 'fos_user_security_login' 
+            or app.request.attributes.get('_route') == 'fos_user_security_logout' %}
+            <a id="active-url" href="{{ path('homepage') }}">Home</a>
+            <ul>
+                <li><a href="{{ path('fos_user_security_login') }}">Iniciar sesión</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Cerrar sesión</a></li>
+            </ul>
+            {% else %}
+            <a href="{{ path('homepage') }}">Home</a>
+            <ul>
+                <li><a href="{{ path('fos_user_security_login') }}">Iniciar sesión</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Cerrar sesión</a></li>
+            </ul>
+            {% endif %}
+            </li>
+            {% if app.user %}
+            {% if app.user.isActive == 1 %}
+
+            <li>
+            {% for item in app.user.roles %}
+            {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+            {% if app.request.attributes.get('_route') == 'insertProgramaciones'
+            or app.request.attributes.get('_route') == 'insertProgramas'
+            or app.request.attributes.get('_route') == 'insertGrillas'
+            or app.request.attributes.get('_route') == 'showProgramas'
+            or app.request.attributes.get('_route') == 'showProgramaciones' %}
+            <a href="#" id="active-url">Programas</a>
+                <ul>
+                    <li><a href="{{ path('insertProgramaciones') }}">Programaciones</a></li>
+                    <li><a href="{{ path('insertProgramas') }}">Programas</a></li>
+                    <li><a href="{{ path('insertGrillas') }}">Grillas de programas</a></li>
+                    <li><a href="{{ path('showProgramas') }}">Lista de programas</a></li>
+                    <li><a href="{{ path('showProgramaciones') }}">Lista de programaciones</a></li>
+                </ul>
+            {% else %}
+            <a href="#">Programas</a>
+                <ul>
+                    <li><a href="{{ path('insertProgramaciones') }}">Programaciones</a></li>
+                    <li><a href="{{ path('insertProgramas') }}">Programas</a></li>
+                    <li><a href="{{ path('insertGrillas') }}">Grillas de programas</a></li>
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showProgramas') }}">Lista de programas</a></li>
+                    <li><a href="{{ path('showProgramaciones') }}">Lista de programaciones</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            </li>
+            
+            <li>
+            {% for item in app.user.roles %}
+            {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+            {% if app.request.attributes.get('_route') == 'insertAgencias'
+            or app.request.attributes.get('_route') == 'insertResponsables'
+            or app.request.attributes.get('_route') == 'insertCtasCtesAgencias'
+            or app.request.attributes.get('_route') == 'showResponsables'
+            or app.request.attributes.get('_route') == 'showAgencias'
+            or app.request.attributes.get('_route') == 'showLiquidaciones' %}
+            <a href="#" id="active-url">Agencias</a>
+                <ul>
+                    <li><a href="{{ path('insertAgencias') }}">Agencias</a></li>
+                    <li><a href="{{ path('insertResponsables') }}">Responsables</a></li>
+                    <li><a href="{{ path('insertCtasCtesAgencias') }}">Liquidar agencia</a></li>
+                    <li><a href="{{ path('showResponsables') }}">Lista de respons.</a></li>
+                    <li><a href="{{ path('showAgencias') }}">Lista de agencias</a></li>
+                    <li><a href="{{ path('showLiquidaciones') }}">Lista de Liquidaciones</a></li>
+                </ul>
+            {% else %}
+            <a href="#">Agencias</a>
+                <ul>
+                    <li><a href="{{ path('insertAgencias') }}">Agencias</a></li>
+                    <li><a href="{{ path('insertResponsables') }}">Responsables</a></li>
+                    <li><a href="{{ path('insertCtasCtesAgencias') }}">Liquidar agencia</a></li>
+                    <li><a href="{{ path('showResponsables') }}">Lista de respons.</a></li>
+                    <li><a href="{{ path('showAgencias') }}">Lista de agencias</a></li>
+                    <li><a href="{{ path('showLiquidaciones') }}">Lista de Liquidaciones</a></li>
+                </ul>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            </li>
+
+            <li>
+            {% if app.request.attributes.get('_route') == 'insertClientes'
+            or app.request.attributes.get('_route') == 'showClientes'
+            or app.request.attributes.get('_route') == 'showCtasCtes' %}
+            <a href="#" id="active-url">Clientes</a>
+                <ul>
+                    <li><a href="{{ path('insertClientes') }}">Clientes</a></li>
+                    <li><a href="{{ path('showCtasCtes') }}">Cta. ctes. clientes</a></li>
+                    <li><a href="{{ path('showClientes') }}">Lista de clientes</a></li>
+                </ul>
+            {% else %}
+            <a href="#" >Clientes</a>
+                <ul>
+                    <li><a href="{{ path('insertClientes') }}">Clientes</a></li>
+                    <li><a href="{{ path('showCtasCtes') }}">Cta. ctes. clientes</a></li>
+                    <li><a href="{{ path('showClientes') }}">Lista de clientes</a></li>
+                </ul>
+            {% endif %}
+            </li>
+
+            {% for item in app.user.roles %}
+            {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+            <li>
+            {% if app.request.attributes.get('_route') == 'insertTarifas' 
+            or app.request.attributes.get('_route') == 'insertPautas' %}
+            <a href="#" id="active-url">Tarifas</a>
+                <ul>
+                    <li><a href="{{ path('insertTarifas') }}">Tarifas</a></li>
+                    <li><a href="{{ path('insertPautas') }}">Pautas de tarifas</a></li>
+                </ul>
+            {% else %}
+            <a href="#">Tarifas</a>
+                <ul>
+                    <li><a href="{{ path('insertTarifas') }}">Tarifas</a></li>
+                    <li><a href="{{ path('insertPautas') }}">Pautas de tarifas</a></li>
+                </ul>
+            {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+            
+            <li>
+            {% for item in app.user.roles %}
+            {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+            {% if app.request.attributes.get('_route') == 'insertEmisoras' 
+            or app.request.attributes.get('_route') == 'insertCiudades' 
+            or app.request.attributes.get('_route') == 'insertTiposMenciones'
+            or app.request.attributes.get('_route') == 'insertTiposDocumentos' %}
+            <a href="#" id="active-url">Sistema</a>
+                <ul>
+                    <li><a href="{{ path('insertEmisoras') }}">Emisoras</a></li>
+                    <li><a href="{{ path('insertCiudades') }}">Zonas</a></li>
+                    <li><a href="{{ path('insertTiposMenciones') }}">Tipos de menciones</a></li>
+                    <li><a href="{{ path('insertTiposDocumentos') }}">Tipos documentos</a></li>
+                </ul>
+            {% else %}
+            <a href="#">Sistema</a>
+                <ul>
+                    <li><a href="{{ path('insertEmisoras') }}">Emisoras</a></li>
+                    <li><a href="{{ path('insertCiudades') }}">Zonas</a></li>
+                    <li><a href="{{ path('insertTiposMenciones') }}">Tipos de menciones</a></li>
+                    <li><a href="{{ path('insertTiposDocumentos') }}">Tipos documentos</a></li>
+                </ul>
+            {% endif %}{% endif %}{% endfor %}
+            </li>
+            
+            <li>
+                {% if app.request.attributes.get('_route') == 'insertOrdenPub'
+                or app.request.attributes.get('_route') == 'showOrdenesPub' %}
+                    <a href="{{ path('insertOrdenPub') }}" id="active-url">Orden de P.</a>
+                    <ul>
+                        <li><a href="{{ path('insertOrdenPub') }}">Orden de P.</a></li>
+                        <li><a href="{{ path('showOrdenesPub') }}">Ordenes de Public.</a></li>
+                    </ul>
+                {% else %}
+                    <a href="{{ path('insertOrdenPub') }}">Orden de P.</a>
+                    <ul>
+                        <li><a href="{{ path('insertOrdenPub') }}">Orden de P.</a></li>
+                        <li><a href="{{ path('showOrdenesPub') }}">Ordenes de Public.</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+            
+            {# <li>
+            {% for item in app.user.roles %}
+            {% if app.request.attributes.get('_route') == 'insertFacturas'
+            or app.request.attributes.get('_route') == 'insertRecibos'
+            or app.request.attributes.get('_route') == 'showCtasCtes' %}
+            <a href="#" id="active-url">Facturación</a>
+                <ul>
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('insertFacturas') }}">Facturas</a></li>
+                    <li><a href="{{ path('insertRecibos') }}">Recibos</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('showCtasCtes') }}">Cta. ctes. clientes</a></li>
+                    <li><a href="#">Cta. ctes. agencias</a></li>
+                    <li><a href="#">Gestion de cobros</a></li>
+                    <li><a href="#">Gestion de pagos</a></li>
+                </ul>     
+            {% else %}
+            <a href="#">Facturación</a>
+                <ul>
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('insertFacturas') }}">Facturas</a></li>
+                    <li><a href="{{ path('insertRecibos') }}">Recibos</a></li>
+                    {% endif %}
+                    <li><a href="{{ path('showCtasCtes') }}">Cta. ctes. clientes</a></li>
+                    <li><a href="#">Cta. ctes. agencias</a></li>
+                    <li><a href="#">Gestion de cobros</a></li>
+                    <li><a href="#">Gestion de pagos</a></li>
+                </ul>
+            {% endif %}
+            {% endfor %}
+            </li> #}
+            
+            <li>
+            {% for item in app.user.roles %}
+            {% if app.request.attributes.get('_route') == 'showEmisoras'
+            or app.request.attributes.get('_route') == 'showTarifas'
+            or app.request.attributes.get('_route') == 'showTiposMenciones'
+            or app.request.attributes.get('_route') == 'showPautas'
+            or app.request.attributes.get('_route') == 'showRecibos'
+            or app.request.attributes.get('_route') == 'showFacturas' 
+            or app.request.attributes.get('_route') == 'showTiposDocumentos'
+            or app.request.attributes.get('_route') == 'listado' %}
+            <a href="#" id="active-url">Informes</a>
+                <ul>
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showEmisoras') }}">Lista de emisoras</a></li>
+                    <li><a href="{{ path('showTarifas') }}">Lista de tarifas</a></li>
+                    {% endif %}
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showPautas') }}">Lista de pautas</a></li>
+                    {% endif %}
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showRecibos') }}">Lista de recibos</a></li>
+                    <li><a href="{{ path('showFacturas') }}">Lista de facturas</a></li>
+                    <li><a href="{{ path('showTiposDocumentos') }}">Lista de T. Documentos</a></li>
+                    <li><a href="{{ path('showTiposMenciones') }}">Lista de menciones</a></li>
+                    {% endif %}
+                    <li><a href="#">Ordenes p/ Locutor</a></li>
+                </ul>     
+            {% else %}
+            <a href="#">Informes</a>
+                <ul>
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showEmisoras') }}">Lista de emisoras</a></li>
+                    <li><a href="{{ path('showTarifas') }}">Lista de tarifas</a></li>
+                    {% endif %}
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showPautas') }}">Lista de pautas</a></li>
+                    {% endif %}
+                    {% if item is sameas('ROLE_ADMIN') or item is sameas('ROLE_SUPER_ADMIN') %}
+                    <li><a href="{{ path('showRecibos') }}">Lista de recibos</a></li>
+                    <li><a href="{{ path('showFacturas') }}">Lista de facturas</a></li>
+                    <li><a href="{{ path('showTiposDocumentos') }}">Lista de T. Documentos</a></li>
+                    <li><a href="{{ path('showTiposMenciones') }}">Lista de menciones</a></li>
+                    {% endif %}
+                    <li><a href="#">Ordenes p/ Locutor</a></li>
+                </ul>
+            {% endif %}
+            {% endfor %}
+            </li>
+            
+            {% endif %}
+            {% endif %}
+        </ul>
+    </nav>
+
+
+{% endblock %}

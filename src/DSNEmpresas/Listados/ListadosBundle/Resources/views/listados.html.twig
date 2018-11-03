@@ -1,0 +1,192 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block route %}var route = "{{ path('deleteEmisora', { 'id': "PLACEHOLDER" }) }}";{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    function checkAll(checkname, bx) {
+        for (i = 0; i < checkname.length; i++){
+            checkname[i].checked = bx.checked? true:false;
+        }
+    }
+    function checkPage(bx){
+
+
+        var bxs = document.getElementByTagName ( "table" ).getElementsByTagName ( "link[]" ); 
+
+        for(i = 0; i < bxs.length; i++){
+            bxs[i].checked = bx.checked? true:false;
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice"><div id="success">
+        {{ flashMessage }}
+    </div></div>
+{% endfor %}
+
+<span id="message"></span>
+
+<div id="bigspace"></div><div id="bigspace"></div>
+
+<table class="resp" cellpadding="5%">
+    <tr><th colspan="5"><h3>Lista de {% block entidad %}{% endblock %}</h3></th></tr>
+</table>
+
+{% block filtro %}{% endblock %}
+
+<table class="resp" rules="rows" border="1" class="listado" bordercolor="#808080" frame="below" cellpadding="5%" name="table">
+<form name="list00" id="myform" action="#">
+
+	<tr id="option">
+	<td>#</td><td><input type="checkbox" name="Check_ctr" value="yes" onClick="checkAll(document.list00, this)"></td>
+	{% block datos %}{% endblock %}
+	</tr>
+        {% for item in pager.getResults %}
+            <tr id="list"><td id="option">{{ loop.index }}</td>
+            {% block datos_lista %}{% endblock %}
+            </tr>
+        {% endfor %}        
+</table>
+
+</form>
+
+<table class="resp">
+    <tr>
+    	{% block botones %}{% endblock %}
+    </tr>
+</table>
+
+<script>
+$(function() {
+    $( "#borrar" ).click(function() {
+        $( "#dialog-confirm" ).dialog( "open" );
+    });
+
+    $( "#dialog-confirm" ).dialog({
+        autoOpen: false,
+        resizable: false,
+        height:350,
+        modal: true,
+        buttons: {
+            Cancelar: function() {
+                $( this ).dialog( "close" );
+            },
+            "Aceptar": function() {
+                var ids;
+
+                ids = $('input[type=checkbox]:checked').map(function() {
+                    return $(this).attr('value');
+                }).get();
+                
+                if(ids.length > 0) {
+                    {% block borrar_route %}{% endblock %}
+                    window.location = route.replace("PLACEHOLDER", ids);
+                }
+                else {
+                    $( this ).dialog( "close" );
+                    $( '#message ').html('<div id="error">Debe seleccionar un elemento de la lista.</div>');
+                }
+            }
+        }
+    });
+});
+</script>
+
+<script>
+$('#editar').click(function() {
+    var ids;
+
+    ids = $('input[type=checkbox]:checked').map(function() {
+        return $(this).attr('value');
+    }).get();
+    
+    ids2= $('input[type=checkbox]:checked').map(function() {
+        return $(this).attr('value2');
+    }).get();
+    
+    if(ids.length > 0) {
+	    {% block editar_route %}{% endblock %}
+	    window.location = route.replace("PLACEHOLDER", ids).replace("PLACEHOLDER2", ids2);
+    }
+    else {
+        $( this ).dialog( "close" );
+    	$( '#message ').html('<div id="error">Debe seleccionar un elemento de la lista.</div>');
+	}
+});
+</script>
+
+<script>
+$(function() {
+    $('#desactivar').click(function() {
+        $( "#dialog-confirm2" ).dialog( "open" );
+    });
+    
+    $( "#dialog-confirm2" ).dialog({
+        autoOpen: false,
+        resizable: false,
+        height:350,
+        modal: true,
+        buttons: {
+            Cancelar: function() {
+                $( this ).dialog( "close" );
+            },
+            "Aceptar": function() {
+                var ids;
+
+                ids = $('input[type=checkbox]:checked').map(function() {
+                    return $(this).attr('value');
+                }).get();
+                
+                if(ids.length > 0) {
+                    {% block desactivar_route %}{% endblock %}
+                    window.location = route.replace("PLACEHOLDER", ids);
+                }
+                else {
+                    $( this ).dialog( "close" );
+                    $( '#message ').html('<div id="error">Debe seleccionar un elemento de la lista.</div>');
+                }
+            }
+        }
+    });
+});
+</script>
+
+{% block mostrar %}{% endblock %}
+
+<div id="dialog-confirm" title="¿ Está seguro ?">
+<p>Está apunto de eliminar un elemento de la lista.<br><b>¿ Está seguro ?</b></p>
+</div>
+
+<div id="dialog-confirm2" title="¿ Está seguro ?">
+    <p>Está apunto de cambiar el estado de un elemento de la lista.<br><span style="font-weight: bold">¿ Está seguro ?</span></p>
+</div>
+
+<div class="wrapper-pages">
+    {% if pager.isPaginable %}
+        {% block pages %}{% endblock %}
+    {% endif %}
+</div>
+
+{# <form id="myform" method="post" >
+    <input type="text">
+</form>
+
+<script>
+function enviar(route) {
+        myform.action = route;
+        myform.submit();
+}
+</script>
+
+{% for item in pages.getPages %}
+    {% set route = path('showEmisoras', {page: item}) %}
+    <button id="{{ item }}" onclick="enviar('{{ route }}')">{{ item }}</button>
+{% endfor %} #}
+
+
+{% endblock %}

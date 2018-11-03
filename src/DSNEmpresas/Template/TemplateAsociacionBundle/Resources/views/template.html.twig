@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+        <title>{% block title %}{% endblock %} - Asociación de Pediatría</title>
+        {% block css %}
+        <!-- Template assets -->
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon" />
+        <link href="{{ asset('bundles/templateasociacion/css/template.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/content.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/header.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/menu.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/footer.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/print.css') }}" rel="stylesheet" type="text/css" media="print" />
+        <!-- Template assets ending -->
+        <link href="{{ asset('bundles/templateasociacion/css/global.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/templateasociacion/css/jquery-ui-1.9.2.custom.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/templateasociacion/css/jquery-ui-1.9.2.custom.min.css') }}" rel="stylesheet" />
+        {% if app.session.get('Asistentes') %}{% else %}{{ app.session.set('Asistentes', 10) }}{% endif %}
+        {% if app.session.get('Coordenadas') %}{% else %}{{ app.session.set('Coordenadas', 10) }}{% endif %}
+        {% endblock %}
+
+		{# {% include 'TemplateBundle::analytics.html.twig' %} #}
+        <script src="{{ asset('bundles/templateasociacion/js/jquery-1.8.3.js') }}"></script>
+        <script src="{{ asset('bundles/templateasociacion/js/jquery-ui-1.9.2.custom.js') }}"></script>
+        {% block js %}
+       
+        {% endblock %}
+    </head>
+    <body>
+            {% block usermenu %}{% include 'TemplateAsociacionBundle:Template:user-menu.html.twig' %}{% endblock %}
+        
+            {% block header %}{% include 'TemplateAsociacionBundle:Template:header.html.twig' %}{% endblock %}
+            
+            <div class="wrapper-menu">
+        {% block menu %}{% include 'TemplateAsociacionBundle:Template:menu.html.twig' %}{% endblock %}
+                </div>
+            
+            
+            <div class="wrapper-content">
+                {% block content %}{% endblock %}
+                {% block login %}{% endblock %}
+            </div>
+            
+
+                <footer class="wrapper-footer">
+            {% block footer %}{% include 'TemplateAsociacionBundle:Template:footer.html.twig' %}{% endblock %}
+                    </footer>
+            
+                </body>
+            </html>

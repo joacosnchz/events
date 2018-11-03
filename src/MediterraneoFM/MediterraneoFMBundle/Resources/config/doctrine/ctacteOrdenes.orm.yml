@@ -1,0 +1,31 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\ctacteOrdenes:
+    type: entity
+    table: ctacte_ordenes
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        idOrdenpub:
+            targetEntity: OrdenPub
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idOrdenpub:
+                    referencedColumnName: id_ordenpub
+                    onDelete: CASCADE
+            orphanRemoval: false
+        idCtasCtesC:
+            targetEntity: CtasCtesClientes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCtasCtesC:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

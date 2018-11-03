@@ -1,0 +1,3 @@
+listado:
+    pattern:  /admin/show/{entidad}/{page}
+    defaults: { _controller: ListadosBundle:Listados:showListado }

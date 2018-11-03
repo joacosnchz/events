@@ -1,0 +1,31 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\ctacteRecibos:
+    type: entity
+    table: ctacte_recibos
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        idRecibo:
+            targetEntity: Recibos
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idRecibo:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+        idCtasCtesC:
+            targetEntity: CtasCtesClientes
+            cascade: { }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idCtasCtesC:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

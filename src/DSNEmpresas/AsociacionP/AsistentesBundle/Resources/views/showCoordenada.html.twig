@@ -1,0 +1,43 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}{{ coordenada.getAtributo }}{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $( document ).tooltip({
+        position: {
+            my: "top-35",
+            at: "top-35",
+        },
+    });
+});
+</script>
+<script>
+    function justNumbers(e) {
+        var keynum = window.event ? window.event.keyCode : e.which;
+        if ((keynum == 8) || (keynum == 46) || (keynum == 13))
+            return true;
+         
+        return /\d/.test(String.fromCharCode(keynum));
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+	<form action="{{ path('showCoordenada', {'id': coordenada.getId}) }}" method="post" {{ form_enctype(form) }}>
+		<table>
+			<tr><th>Edición de coordenadas de atributos</th></tr>
+			{% for form in form %}
+				<tr>
+					<td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<hr>
+
+		<p>Los campos marcados con asterísco <span id="required">(*)</span> son obligatorios</p>
+		<button type="submit">Aceptar</button>&nbsp;<button onclick="window.location='{{ path('showCoordenadas') }}'">Cancelar</button>
+	</form>
+{% endblock %}

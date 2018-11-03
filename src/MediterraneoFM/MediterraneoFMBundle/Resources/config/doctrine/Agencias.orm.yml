@@ -1,0 +1,95 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Agencias:
+    type: entity
+    table: Agencias
+    fields:
+        id_agencia:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_agencia
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 35
+            fixed: false
+            nullable: false
+        apellido:
+            type: string
+            length: 35
+            fixed: false
+            nullable: false
+        razonSocial:
+            type: string
+            length: 45
+            fixed: flase
+            nullable: false
+            column: razon_social
+        direccion:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+        telefono_particular:
+            type: string
+            length: 15
+            fixed: false
+            nullable: true
+            column: telefono_particular
+        telefono_comercial:
+            type: string
+            length: 15
+            fixed: false
+            nullable: false
+            column: telefono_comercial
+        celular:
+            type: string
+            length: 18
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        isActive:
+            type: boolean
+            nullable: false
+            column: is_active
+        path:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        pathMembrete:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        mail:
+            type: date
+            nullable: false
+            column: mail
+    manyToOne:
+        id_ciudad:
+            targetEntity: Ciudades
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ciudad:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+        idComision:
+            targetEntity: Comisiones
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idComision:
+                    referencedColumnName: id
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,63 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Lista de emisiones{% endblock %}
+
+{% block js %}
+<script src="{{ asset('bundles/template/js/jquery-1.8.3.js') }}"></script>
+<script src="{{ asset('bundles/template/js/jquery-ui-1.9.2.custom.js') }}"></script>
+<script>
+$(function() {
+$( "#opener" ).click(function() {
+$( "#dialog-confirm" ).dialog( "open" );
+});
+$( "#dialog-confirm" ).dialog({
+autoOpen: false,
+resizable: false,
+height:220,
+modal: true,
+buttons: {
+"Aceptar": function() {
+$(function() { $("form#myform").submit(); });
+},
+Cancelar: function() {
+$( this ).dialog( "close" );
+}
+}
+});
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div id="bigspace"></div><div id="bigspace"></div>
+
+<table border="1" class="show" cellpadding="5px">
+    <tr><th colspan="5"><h3>Lista de emisiones</h3></th></tr>
+
+<form name="myform" id="myform" action="{{ path('deleteEmision') }}">
+    
+    <tr><td></td><td>Nro. Emisiones</td></tr>
+        {% for item in pager.getResults %}
+            <tr><td><input type="checkbox" name="{{ item.getNombre }}" value="{{ item.getNombre }}" id="{{ item.getNombre }}"></td><td><a href="{{ path('showEmision', {'nombre': item.getNombre|replace(' ', '-')}) }}">{{ item.getNombre }}</a></td></tr>
+        {% endfor %}
+</table>
+
+<table>
+    <tr><td><input type="button" name="nuevo" value="Nuevo" onclick="window.location='{{ path('insertEmisionPrograma') }}'" /></td><td><input type="button" id="opener" value="Borrar"></td><td>Mostrar: <select>{% for i in 0..50 %}<option onClick="window.location='{{ path('showEmisiones', {'limit': i }) }}'" value="{{ i }}">{{ i }}</option>{% endfor %}</select></td></tr>
+</table>
+</form>
+
+<div id="dialog-confirm" title="¿ Está seguro ?">
+<p>Al eliminar una emision, también eliminará su respectiva mencion. ¿ Está seguro ?</p>
+</div>
+
+<div class="wrapper-pages">
+        {% if pager.isPaginable %}
+            {{ paginate(pager, 'showEmisiones') }}
+        {% endif %}
+</div>
+
+{% endblock %}
+
+

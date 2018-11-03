@@ -1,0 +1,70 @@
+DSNEmpresas\AsociacionP\AsociacionPBundle\Entity\Asistentes:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombre:
+            type: string
+            length: '35'
+        apellido:
+            type: string
+            length: '35'
+        dni:
+            type: integer
+            unique: true
+        especialidad:
+            type: string
+            length: '50'
+        fechaNac:
+            type: date
+        fechaGrad:
+            type: date
+            nullable: true
+        profesion:
+            type: string
+            length: '50'
+        calle:
+            type: string
+            length: '35'
+            nullable: true
+        nroCalle:
+            type: integer
+            column: nro_calle
+            nullable: true
+        piso:
+            type: string
+            length: '5'
+            nullable: true
+        depto:
+            type: string
+            length: '3'
+            nullable: true
+        cp:
+            type: integer
+            nullable: true
+        telefono:
+            type: string
+            length: '35'
+            nullable: true
+        email:
+            type: string
+            length: '60'
+            nullable: true
+        asistencia:
+            type: boolean
+            nullable: true
+        enCalidad:
+            type: string
+            length: '35'
+        localidad:
+            type: string
+            length: '40'
+            nullable: true
+        impreso:
+            type: integer
+    lifecycleCallbacks: {  }

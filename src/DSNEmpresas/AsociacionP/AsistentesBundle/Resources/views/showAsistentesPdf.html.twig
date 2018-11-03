@@ -1,0 +1,21 @@
+<img style="margin-left:-5%" src="{{ web_dir }}{{ asset('bundles/templateasociacion/images/agencias/') }}{{ membrete }}" alt="membrete" />
+
+<fieldset>
+	<div>Cantidad de Inscriptos Presentes: {{ presentes }} - Cantidad de Inscriptos Ausentes: {{ ausentes }}</div>
+</fieldset>
+
+<div id="bigspace"></div>
+
+<table border="1" cellpadding="5" cellspacing="5">
+	<tr><td>#</td><td>Nombre</td><td>DNI</td><td>Profesión</td><td>En calidad de</td><td>Email</td></tr>
+	{% for item in asistentes %}
+		<tr>
+			<td>{{ loop.index }}</td>
+			<td>{{ item.getApellido }}, {{ item.getNombre }}</td>
+			<td>{{ item.getDni }}</td>
+			<td>{{ item.getProfesion }}</td>
+			<td>{{ item.getEnCalidad }}</td>
+			<td>{{ item.getEmail }}</td>
+		</tr>
+	{% endfor %}
+</table>

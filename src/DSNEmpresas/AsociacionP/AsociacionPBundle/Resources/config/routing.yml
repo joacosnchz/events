@@ -1,0 +1,3 @@
+asociacion_p_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: AsociacionPBundle:Default:index }

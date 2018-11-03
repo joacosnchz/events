@@ -1,0 +1,22 @@
+/*** Footer Comienzo ***/
+.wrapper-footer {
+	height:72px;
+	width:833px;
+	background: url('../images/bottom.jpg');
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	margin: 0 auto 0 auto;
+}
+.foot {
+	color:#FFFFFF;
+}
+.foot a {
+	color:#FF8E90;
+}
+.foot a:hover {
+	color:#FFFFFF;
+}
+.linkfoot:hover {
+	text-decoration:underline;
+}
+/*** Footer Final ***/

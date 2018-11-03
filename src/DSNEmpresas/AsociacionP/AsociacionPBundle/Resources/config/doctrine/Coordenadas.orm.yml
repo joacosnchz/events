@@ -1,0 +1,27 @@
+DSNEmpresas\AsociacionP\AsociacionPBundle\Entity\Coordenadas:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        atributo:
+            type: string
+            length: '30'
+        cordX:
+            type: float
+        cordY:
+            type: float
+        fuente:
+            type: string
+            length: '25'
+        tamano:
+            type: integer
+        negrita:
+            type: boolean
+        cursiva:
+            type: boolean
+    lifecycleCallbacks: {  }

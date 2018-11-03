@@ -1,0 +1,45 @@
+<h1>Vencidas</h1>:
+Nro. de orden | Cliente | Emisora | Monto a cobrar
+{% for item4 in ordenesmesant %}
+    {% if item4.getIdOrdenPub.estado == 1 %}
+        {% if item4.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+            {{ item4.getIdOrdenPub.getNroOrdenPub }} | {{ item4.getIdOrdenPub.getIdCliente.getNombre }}, {{ item4.getIdOrdenPub.getIdCliente.getApellido }} | {{ item4.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }} | ${{ item4.Total }}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+--------------------------------------------------------------------------------
+
+Vencen hoy:
+Nro. de orden | Cliente | Emisora | Monto a cobrar
+{% for item in ordenespub %}
+    {% if item.getIdOrdenPub.estado == 1 %}
+        {% if item.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+            {{ item.getIdOrdenPub.getNroOrdenPub }} | {{ item.getIdOrdenPub.getIdCliente.getNombre }}, {{ item.getIdOrdenPub.getIdCliente.getApellido }} | {{ item.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }} | ${{ item.Total }}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+                
+--------------------------------------------------------------------------------
+
+Vencen este mes:
+Nro. de orden | Cliente | Emisora | Monto a cobrar
+{% for item2 in ordenesmes %}
+    {% if item2.getIdOrdenPub.estado == 1 %}
+        {% if item2.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+            {{ item2.getIdOrdenPub.getNroOrdenPub }} | {{ item2.getIdOrdenPub.getIdCliente.getNombre }}, {{ item2.getIdOrdenPub.getIdCliente.getApellido }} | {{ item2.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }} | ${{ item2.Total }}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+--------------------------------------------------------------------------------
+
+Vencen el mes siguiente:
+Nro. de orden | Cliente | Emisora | Monto a cobrar
+{% for item3 in ordenesmessig %}
+    {% if item3.getIdOrdenPub.estado == 1 %}
+        {% if item3.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+            {{ item3.getIdOrdenPub.getNroOrdenPub }} | {{ item3.getIdOrdenPub.getIdCliente.getNombre }}, {{ item3.getIdOrdenPub.getIdCliente.getApellido }} | {{ item3.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }} | ${{ item3.Total }}
+        {% endif %}
+    {% endif %}
+{% endfor %}

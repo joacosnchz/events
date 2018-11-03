@@ -1,0 +1,46 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Recibos:
+    type: entity
+    table: Recibos
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nro_recibo:
+            type: integer
+            unsigned: false
+            nullable: false
+            column: nro_recibo
+        fecha:
+            type: date
+            nullable: false
+        importe:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        concepto:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        total:
+            type: integer
+            unsigned: false
+            nullable: false
+
+    manyToOne:
+        id_cliente:
+            targetEntity: Clientes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_cliente:
+                    referencedColumnName: id_cliente
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

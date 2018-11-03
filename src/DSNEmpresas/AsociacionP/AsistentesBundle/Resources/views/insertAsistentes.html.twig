@@ -1,0 +1,103 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}Pre-inscripcion{% endblock %}
+
+{% block js %}
+<script>
+$(function() {
+    $( "#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaNac, #dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaGrad" ).datepicker({ 
+        dateFormat: "dd-mm-yy",
+    });
+});
+</script>
+
+<script>
+$(function() {
+    $( '#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaNac' ).focus(function() {
+        $( '#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaNac' ).tooltip( "disable" );
+    });
+});
+
+$(function() {
+    $( '#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaGrad' ).focus(function() {
+        $( '#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaGrad' ).tooltip( "disable" );
+    });
+});
+</script>
+
+<script>
+$(function() {
+    $( '#dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaGrad, #dsnempresas_asociacionp_asistentesbundle_insertasistentes_fechaNac, #dsnempresas_asociacionp_asistentesbundle_insertasistentes_dni' ).tooltip({
+        position: {
+            my: "top-35",
+            at: "top-35",
+        },
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	    <div class="flash-notice"><div id="success">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	{% for flashMessage in app.session.flashbag.get('error') %}
+	    <div class="flash-notice"><div id="error">
+	        {{ flashMessage }}
+	    </div></div>
+	{% endfor %}
+
+	<form action="{{ path('insertAsistentes') }}" method="post" {{ form_enctype(form) }} id="insertAs">
+		<table>
+			<tr><th>Pre-inscipcion</th></tr>
+			{% for form in form %}
+				<tr><td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td></tr>
+			{% endfor %}
+		</table>
+
+		{% if confirmation == true %}
+			<fieldset>
+				<legend>Confirme la informacion ingresada</legend>
+				<table>
+					<tr><td>Nombre</td><td>{{ asistentes.getApellido }}, {{ asistentes.getNombre }}</td></tr>
+					<tr><td>Fecha de nacimiento</td><td>{{ asistentes.getFechaNac|date('d-m-Y') }}</td></tr>
+					<tr><td>DNI</td><td>{{ asistentes.getDni }}</td></tr>
+					<tr><td>En calidad de</td><td>{{ asistentes.getEnCalidad }}</td></tr>
+					<tr><td>Profesión</td><td>{{ asistentes.getProfesion }}</td></tr>
+					<tr><td>Especialidad</td><td>{{ asistentes.getEspecialidad }}</td></tr>
+					<tr><td>Fecha de graduación</td><td>{{ asistentes.getFechaGrad|date('d-m-Y') }}</td></tr>
+					<tr><td>Localidad</td><td>{{ asistentes.getLocalidad }}</td></tr>
+					<tr><td>Domicilio</td><td>{{ asistentes.getCalle }}&nbsp;{{ asistentes.getNroCalle }} - {{ asistentes.getPiso }} - {{ asistentes.getDepto }} - C.P. {{ asistentes.getCP }}</td></tr>
+					{% if asistentes.getTelefono %}
+						<tr><td>Teléfono</td><td>{{ asistentes.getTelefono }}</td></tr>
+					{% endif %}
+					<tr><td>Email</td><td>{{ asistentes.getEmail }}</td></tr>
+					<tr><td>Asistencia</td><td>{% if asistentes.getAsistencia == 1 %}Presente{% else %}Ausente{% endif %}</td></tr>
+				</table>
+			</fieldset>
+		{% endif %}
+
+		<hr>
+		<p>Los campos marcados con un asterísco <span id="required">(*)</span> son obligatorios.</p>
+
+		<button type="submit">Aceptar</button>&nbsp;
+		<button type="reset" onclick="window.location='{{ path('insertAsistentes') }}'">Cancelar</button>&nbsp;
+		{% if confirmation == true %}
+			<button id="mod">Modificar</button>
+		{% endif %}
+	</form>
+
+	<script>
+	$(function() {
+		$('#mod').click(function(event) {
+			event.preventDefault();
+			var conf = $('#dsnempresas_asociacionp_asistentesbundle_insertasistentes_confirmation');
+			conf.val(0);
+			$('#insertAs').submit();
+		});
+	});
+	</script>
+{% endblock %}

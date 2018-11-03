@@ -1,0 +1,195 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% set fecha = '29/01/14' %}
+{% set version = '1.9.7' %}
+
+{% block title %}Changelog {{ version }} - {{ fecha }}{% endblock %}
+
+{% block content %}
+
+<div>
+    <h2>Chagelog {{ version }} - Última vez acutalizado el {{ fecha }}</h2>
+</div>
+
+<div title="Chagelog {{ version }} - {{ fecha }}">
+    {% if page == 1 %}
+        <p>29-01-14</p>
+        <ul>
+            <li>Corrección de errores</li>
+        </ul>
+        <p>28-01-14</p>
+        <ul>
+            <li>Cambiado el id_orden mostrado en el formulario de c/c de clientes por el nro_orden.</li>
+            <li>Al liquidar a vendedores, el usuario puede ver el monto de las ordenes que aún no fueron cobradas.</li>
+            <li>Corrección de errores.</li>
+        </ul>
+        <p>27-01-14</p>
+        <ul>
+            <li>Se ha definido el campo <strong>nro_menciones</strong> como campo unico en la tabla <strong>TiposMenciones</strong></li>
+            <li>El campo <strong>email</strong> de la tabla <strong>Agencias</strong> ahora es obligatorio en los formularios.</li>
+            <li>Agregado el campo <strong>RazonSocial</strong> a la tabla <strong>Agencias</strong>.</li>
+            <li>Cambiamos todos los select de <strong>Agencias</strong> para que sean buscadas segun su <strong>RazonSocial</strong>.</li>
+            <li>Las ordenes anuladas, es decir con campo <strong>estado</strong> = 0, no son tenidas en cuenta en los movimientos de c/c.</li>
+            <li>La alerta de inicio ahora muestra las ordenes vencidas y las que vencen en los proximos 10 dias.</li>
+            <li>Solucionado error en filtro de <strong>Tarifas</strong> en el <strong>Alta de pautas</strong></li>
+            <li>Agregado listado de <strong>TiposMenciones</strong></li>
+            <li>Agregada la posibilidad de editar usuario y contraseña en <strong>Responsables</strong>.</li>
+            <li>Correción de errores.</li>
+        </ul>
+        <p>25-01-14</p>
+        <ul>
+            <li>Corrección de errores.</li>
+            <li>Recordar siempre dar permisos de escritura a apache en las siguientes carpetas:</li>
+            <li>(carpeta publica)/bundles/template/images/agencias</li>
+            <li>(carpeta publica)/bundles/ordenpub</li>
+            <li>(carpeta publica)/bundles/ctasctesclientes</li>
+            <li>Agregado el control de que el nro. de menciones es un campo único.</li>
+        </ul>
+        <p>24-01-14</p>
+        <ul>
+            <li>Fue necesario actualizar la versión php del servidor a la <em>5.5.8-3+sury.org~precise+1</em> </li>
+            <li>Actualizamos la versión del framework a la <em>2.4.1</em></li>
+            <li>Correción de errores</li>
+        </ul>
+        <p>21/22-01-14</p>
+        <ul>
+            <li>Corrección de errores</li>
+            <li>La selección de tarifas y pautas ahora autocompleta el neto pautado para cada emisora automaticamente.</li>
+            <li>Agregado el campo <strong>fecha</strong> a la tabla <strong>OrdenPub</strong> (ordenes de publicidad)</li>
+            <li>Agregada tabla <strong>Comisiones</strong> y el campo <strong>idComision</strong> en la tabla <strong>Agencias</strong>. DER: <a class="external" href="http://dolemlabs.com.ar:3002/attachments/download/214/Comisiones.pdf">http://dolemlabs.com.ar:3002/attachments/download/214/Comisiones.pdf</a></li>
+            <li>Formulario de nueva liquidación.</li>
+            <li>En el formulario de nueva liquidación, ahora se pueden modificar las comisiones, y actualizando los valores recalcula los subtotales, y el total a liquidar.</li>
+            <li>Se ha tenido que implementar un script en java para el formateo de valores al modificar las comisiones (similar a la funcion number_format en php).</li>
+        </ul>
+        <p>20-01-14:</p>
+        <ul>
+            <li>El concepto de la generación del pago se completa segun el tipo de documento seleccionado.</li>
+            <li>Corrección de errores.</li>
+            <li><a class="external" href="http://dolemlabs.com.ar:3002/attachments/download/212/Grillas.pdf">http://dolemlabs.com.ar:3002/attachments/download/212/Grillas.pdf</a> DER de la tabla padre Grillas con sus tablas hijas (Programas, Tipos Menciones) para su analisis.</li>
+            <li>Quitamos el control de que solo se pueda completar recargo O descuento, debido a que en la práctica si se pueden aplicar los dos.</li>
+            <li>El campo <strong>leyenda</strong> de la tabla <strong>TiposDocumentos</strong> ahora es un campo de tipo UNICO</li>
+            <li>Creamos un validador para los campos UNICOS de una base de datos (MediterraneoFM\MediterraneoFMBundle\Validator\Constraints\IsUniqueValidator) escrito de forma general para poder ser utilizado en cualquier entitdad y con cualquier campo de ésta. Lo aplicamos al campo <strong>leyenda</strong> de nuestra tabla <strong>TiposDocumentos</strong></li>
+            <li><a class="external" href="http://dolemlabs.com.ar:3002/attachments/download/213/Liquidaciones.pdf">http://dolemlabs.com.ar:3002/attachments/download/213/Liquidaciones.pdf</a> se agregan dos tablas a la base de datos detalladas en el DER adjuntado</li>
+        </ul>
+        <p>17-01-14:</p>
+        <ul>
+            <li>Solucionado error en seleccion de tarifas.</li>
+            <li>Borrado campo horario.</li>
+            <li>Agregado popup de confirmación al generar orden de publicidad.</li>
+            <li>Ahora el modulo de pdf acepta HTML5 y pudimos quitar el código fuente del directorio raiz lo cual era inseguro. Y el pdf es igual a la impresión en html:<br />para que se pueda ejecutar el comando de creación de pdf desde la web, www-data (que es por lo general el usuario apache) tiene que poder ejecutar el comando php, para esto es necesario darle los permisos correctos de la siguiente forma:<br />
+            <pre>
+                # sudo chmod 4755 /usr/bin/php
+                # sudo chmod u+s /usr/bin/php
+            </pre>
+            </li>
+            <li>Solucionado error con boton imprimir orden de publicidad en html.</li>
+            <li>Solucionado problema con jquery en c/c de clientes.</li>
+            <li>Ahora el formulario filtro de c/c de clientes recompleta sus datos una vez ingresado un nuevo movimiento.</li>
+            <li>Se implemento por seguridad que dos personas no puede ingresar al sistema con el mismo usuario y contraseña.</li>
+        </ul>
+    {% endif %}
+
+    {% if page == 2 %}
+        <p>16-01-14:</p>
+        <ul>
+            <li>Solucionado error al modificar la selección de tarifas en la creación de ordenes de publicidad.</li>
+            <li>Solucionado error con jquery calendar en la creación de ordenes de publicidad.</li>
+            <li>Modificados placeholders de los textbox en la creación de ordenes de publicidad.</li>
+            <li>Borrado el campo <strong>horario</strong> de la tabla <strong>OrdenPub</strong> (ordenes de publicidad) debido a que era innecesario.</li>
+            <li>Cambiado total por subtotal en el listado de ordenes de publicidad.</li>
+            <li>Actualizado el formulario de renovación de ordenes de publicidad con la nueva modalidad de selección de tarifas.</li>
+            <li>Agregada la posibilidad de cerrar los jquery popup al hacer click en cancelar.</li>
+            <li>Solucionados errores en renovación de orden de publicidad, se ha agregado una vista adicional para este módulo.</li>
+            <li>Agregado un mensaje de alerta cuando se quiere renovar una orden de publicidad anulada, lo cual no se puede hacer.</li>
+            <li>Agregado cartel de confirmación para generar una orden de publicidad.</li>
+        </ul>
+        <p>20-12-13:<br>Solucionado el problema del tooltip junto con la seleccion de fecha del calendario.<br>Cambiada la selección de horarios de programas por una más intuitiva y facil para el usuario.<br>Agregado el boton "cancelar" al seleccionar el cambio de la imágen de una agencia.</p>
+        <p>19-12-13:<br>Mejoramiento de estilos en formulario de orden de publicidad.<br>Implementación de bundle de seguridad en login: cinco posiblidades de logeo de cualquier usuario, se guarda cada posibilidad erronea para un posterior control y si se llega a las cinco se procede a bloquear la IP del usuario que intenta ingresar por cinco minutos (este tiempo puede ser modificado a definir por el administrador de seguridad.).</p>
+        <p>18-12-13:<br>Correción de errores.<br>Mejoras en listados de ordenes de publicidad: la búsqueda por numero de orden es menos estricta de modo que la búsqueda arroje varios resultados posibles, solución de errores.<br>Mejoras en listados de programas. Se ha implementado un selector de horario más intuitivo, la búsqueda por nombre no es estricta y solución de errores.</p>
+        <p>27-11-13:<br>El campo programaciones es incremental con respecto a las emisoras, una vez seleccionada esta mediante el tabulador se cargan las programaciones.<br>Actualización de seguridad FOSUserBundle.<br>Bloqueo de IP luego de 5 intentos fallidos de login.<br>Nueva modalidad de selección de tarifas en orden de publicidad: por cada emisora se selecciona una tarifa y incrementalmente por cada tarifa aparecen sus pautas (definir qué botón actualizará las pautas).</p>
+        <p>07-10-13:<br>Agregado filtro por tarifa en el listado de pautas. Avances en el nuevo selector de tarifas para la creación de ordenes de publicidad.</p>
+        <p>06-10-13:<br>Agregado listado de programaciones con su respectivas opciones de borrado y modificación.</p>
+        <p>15-09-13:<br>Se ha modificado la maquetación del sistema para que este sea más interactivo y atractivo, agregando lo último en este campo: css3.</p>
+        <p>14-09-13:<br>Se ha editado el archivo de maquetación del menú, se ha reorganizado para su mejor comprensión y orden. También se han actualizado las etiquetas del template a la ultima tecnologia: html5.</p>
+        <p>13-09-13:<br>Editado el menú segun requerimientos del cliente.<br>Quitados los links de la parte superior del sistema para usuarios no administradores, ya que estos no podrían acceder a ellos por falta de permisos. Solucionado error en los enlaces que enviaba el e-mail de aviso.<br>Se ha creado una cuenta de correo para el envío de e-mails informativos del sistema. Cambiados modos de scripting en ciertas partes del sistema. Borradas lineas inservibles. Cambiadas las formas de comparar las fechas de vigencia de tarifas y ordenes de publicidad.<br>Solucionados errores varios.</p>
+        <p>10-09-13:<br>Solucionado error el filtrado por usuarios. Agregados más mensajes en casos de errores del usuario (validación de errores en formularios). Solucion de errores varios.</p>
+        <p>08-09-13:<br>Solucion de error en ctas. ctes. de clientes. Eliminado error en llamado de un archivo .css viejo.<br>Cambio del sistema de seguidad del sistema. Ahora existe un solo usuario super administrador que tiene acceso a todo y puede ver todo. También hay dos que tienen acceso a todo, pero solo pueden ver los listados filtrados (es decir de su propia ciudad o agencia), y además están las agencias que tienen los permisos más reducidos.</p>
+        <p>02-09-13:<br>Ahora la tabla que muestra las grillas en el alta de ordenes de publicidad es dinámica de acuerdo a las programaciones, programas, y menciones pactadas para cada programa.<br>Solución de errores varios.</p>
+        <p>28-08-13:<br>Generalizada la vista, y el control de los listados. Cambios realizados en el servidor. actualizaciones de seguridad. Solucion de errores varios.</p>
+        <p>25-08-13:<br>Completada la modularización del sistema en los diferentes componentes que son posibles ejecutar, así obtener mayor orden y posibilidad de solucion de futuros errores. Globalización por si alguien fuera de la empresa desarroladora de este sistema tiene acceso al código fuente. Cambiado error lógico en el borrado de facturas.</p>
+        <p>23-08-13:<br>Los menú y accesos directos a los cuales los usuarios no administradores no tienen acceso ya no serán mostrados cuando estos accedan al sistema. En cambio si el login es de un usuario administrador, sí se mostraran.<br>Solucionado error en listado de ordenes de publicidad. Solucionado error en modificación de agencias, el campo imagen ya no es obligatorio y solo obligatorio si es requerido el cambio de imagen.</p>
+        <p>22-08-13:<br>Solucion de errores en filtro de ordenes de publicidad. Modularización parcial del sistema. Cambio de la forma de borrar registros en los listados.</p>
+    {% endif %}
+
+    {% if page == 3 %}
+        <p>21-08-13<br>Ahora para los usuarios administradores no se filtra nada, ellos pueden ver las emisoras de todas las ciudades, por ende todas las tarifas y pautas; todos los programas y programaciones; los clientes de todas las agencias, etc.<br>Customización de páginas de error, ahora podemos modificar las páginas de error (como 404 not found o 403 forbbien) con el texto que sea necesario, muy util para cuando un usuario no administrador quiere acceder a una parte del sistema para la que no tiene permisos.</p>
+        <p>20-08-13:<br>El concepto en un nuevo movimiento de c/c de clientes ahora se auto-completa. Se han modificado los permisos de usuarios, los usuarios no administradores no pueden borrar clientes, si verlos y editarlos (solo los de su agencia).<br>Agregado el filtro 'vigencia', permite que el listado de ordenes de publicidad muestre solo las vigentes o solo las vencidas.<br>Agregado filtro por agencias al listado de ordenes de publicidad, este campo del filtro solo aparece cuando el usuario logueado es administrador, de lo contrario, no se muestra el select y las ordenes mostradas son las de la agencia activa. Ademas, el filtro de clientes del mismo listado muestra todos los clientes si el login es administrador.</p>
+        <p>19-08-13:<br>Etapa final en el filtro de ordenes de publicidad, ahora si el usuario logeado es administrador, se listan todas las ordenes, de lo contrario solo las de la agencia activa. Siguiente etapa: agregar filtro que permita seleccionar las ordenes de determinada agencia agencia, solo para los usuarios administradores.<br>Solucionado error en verificación de orden vigente o vencida.</p>
+        <p>18-08-13:<br>Agregado alta, baja, y modificacion (ABM) de tipos de documentos.<br>Ahora en el listado de ordenes de publicidad se muestran las condiciones de pago, las fechas de vencimiento, etc. También si una orden está vigente o vencida.<br>En la alerta del home, ahora también se muestran las ordenes vencidas. Ahora se muestra el nro. de talon de la orden de publicidad en su respectivo listado.<br>Agregado el el listado de ordenes de publicidad, filtro que permite seleccionar de que forma están ordenados los registros mostrados.</p>
+    	<p>17-08-13:<br>Agregada información de usuario mostrada en el TOP del sistema, ahora se muestra el tipo de usuario (ADMINISTRADOR o AGENCIA) y el Nombre de la agencia. Asimismo se agregaron enlaces en dichos datos para facilitar el acceso a información más detallada.</p>
+    	<p>13-08-13:<br>Solución de errores en listados, ahora se muestra un error si ningun elemento de la lista es seleccionado (con jquery dinamicamente).</p>
+    	<p>12-08-13:<br>Agregada la posibilidad de exportar las cuentas corrientes de los clientes a PDF. Mejoramientos de estilos en botones e inputs.</p>
+    	<p>09-08-13:<br>Agregado el campo <b>fecha_hasta</b> en el filtro de cuenta corriente de clientes. Solucionado error en filtro de ordenes de publicidad.</p>
+    	<p>08-08-13:<br>Mejorada la interfaz en el manejo de las c/c de clientes, ampliadas las operaciones a realizar. Se agrego su relación con los tipos de documento (definen movimiento deudor o acreedor).</p>
+    	<p>06-08-13:<br>Las ordenes de publicidad ya imprimen con imágenes. Ahora es posible implementar el membrete de la empresa.</p>
+    	<p>02-08-13:<br>Solucionados los problemas del mantenimiento de cuentas corrientes de clientes. Ya funcionan con normalidad.<br>También agregados mejoramientos de estilos en ese modulo.</p>
+        <p>24-07-13:<br>Generada nuevas tablas de Ciudades y Provincias, ahora las demás tablas que incluyan zona están relacionadas a estas.<br>Solucionado el error en el listado de las ordenes de publicidad.</p>
+        <p>22-07-13:<br>El listado de clientes ahora está filtrado por agencias, ya que todos los usuarios tienen la posibilidad de verlo.<br>Ahora se muestra el menu que está activo actualmente.<br>Agregado un cartel de confirmación. Corrección de errores. Actualización de framework.</p>
+        <p>21-07-13:<br>Agregado filtro en listado de ordenes de publicidad, por fecha, nro de orden y cliente.<br>Agregado listado de c/c de clientes con calculo de su saldo y la posibilidad de realizar un movimiento manual.</p>
+        <p>19-07-13:<br>Agregado movimiento en cta. cte. de clientes al generar una orden de publicidad.</p>
+        <p>18-07-13:<br>Agregado el envío de mails a un usuario determinado con las noticias de ordenes de publicidad vencidas y a vencer.<br>Solucionado el error en mostrar las tarifas de el mes actual, y agregadas las tarifas que vencen el mes siguiente.<br>Cambiado boton que muestra las ordenes de publicidad vencidas.<br>Solucionados errores varios. Cambiados campos mostrados al imprimir la orden. Cambiados los campos de zonas en todos los formularios.Cambiadas entidades referenciales.<br>.Implementado calculo automático de total por emisora.<br>Cambiados rotulos en orden de publicidad.</p>
+        <p>12-07-13:<br>Solucionado el error en definición de vigencia de tarifas.<br>Mejorados los mensajes flash que aparecen en confirmación de una acción realizada.<br>Agregados multiples botones en los listados con su respectiva verificación de acción para una mejor navegabilidad y compresión de las acciones a realizar.<br>Agregado filtro de clientes en la orden de publicidad.</p>
+        <p>10-07-13:<br>Agregados botones en la barra de herramientas Agencias y de Ordenes de publicidad, con nuevo método de programación para su implementación.<br>Solucionado error en carga de pautas.<br>Agregado filtro de Agencias en el alta de Responsables.</p>
+        <p>09-07-13:<br>Agregado filtro de programaciones en el alta de programas<br>Corregidos errores en tipos de datos.<br>Solucionado el error que no mostraba el favicon en el servidor remoto.<br>Agregada reigstro de pagares, ahora quedan guardados; esto da la posibilidad de que sean impresos en otro momento y no solo en el mismo momento en que es vendida la orden.<br>Solucionado el error de verificación de doble seleccion de tarifas en la orden de publicidad.<br>Agregada la verificación de que solo se ingresen numeros en el neto y total de la orden de publicidad.</p>
+        <p>08-07-13:<br>Agregada la posibilidad de renovar una orden de publicidad.<br>Filtradas por zona las programaciones mostradas en el alta de programas.<br>Cambiada la numeración de ordenes de publicidad, ahora: {id_agecia}{id_ordenpub}<br>Solucionado el eror que mostraba tarifas no vigentes en el alta de pautas.<br>Ahora en el popup del home también se muestran las ordenes de publicidad que vencen este mes.</p>
+        <p>07-07-13:<br>Customización de colores. Agregadas condiciones de seguridad en el ingreso al sistema, y en la validación de secciones disponibles para uno u otro usuario (permisos).<br>Solucionado el error que mostraba las ordenes de publicidad vencidas en el home cuando estan inactivas.</p>
+        <p>04-07-13:<br>Cambiadas toda la información de base de datos a archivos separados de su clase de persistencia. Ahora están en un archivo aparte de formato .yml, mayor orden y modificación de los datos.</p>
+        <p>03-07-13:<br>Solucionado el error que mostraba las tarifas sin pautas cuando si habia pautas definidas de otra emisora. Y también el error que mostraba una tarifa dentro de la emisora que no le correspondía.</p>
+        <p>02-07-13:<br>Agregada la posibilidad de editar programas, módulo anteriormente incompleto.<br>Implementado nuevo estilo de impresión de ordenes de publicidad con la utilización de las ultimas tecnologias en texto web: HTML5.</p>
+        <p>01-07-13:<br>Solucionado el error que permitía que se seleccionen más de una pauta por emisora. Quitada a demas, la posibilidad de modificar facturas y recibos por ser documentos comerciales, contratos e inamobibles.</p>
+    {% endif %}
+
+    {% if page == 4 %}
+        <p>29-06-13:<br>Los listados de tarifas de la orden de publicidad y el alta de pautas ahora solo muestran las tarifas que pertenecen a las emisoras que son de la misma ciudad que la agencia actual.</p>
+        <p>28-06-13:<br>Solucionado el problema de tildes en la generación del pdf de una orden de publicidad.<br>Mejoramientos de estilos en diferetes modulos del sistema. <s>Orientado el formulario de ordenes de publicidad a su utilización con smartphone.</s></p>
+        <p>24-06-13:<br>Agregado estado de orden y posibilidad de su modificiación.<br>El popup de aviso de ordenes vencidas se abre una sola vez al inicio de sesión, se puede reabrir con un boton en la columna derecha.<br>Solucionados los errores de urls relativas y absolutas que no permitian mostrar ciertas imágenes teniendo el software en la nube.</p>
+        <p>15-06-13:<br>Se ha implementado el checkbox para seleccionar todos los registros mostrados (comodidad para las operaciones).</p>
+        <p>14-06-13:<br>Se ha actualizado el software de base a la ultima versión (con soporte extendido).</p>
+        <p>13-06-13:<br>Implementación de html5 en formularios.</p>
+        <p>13-06-13:<br>Ahora las ordenes de publicidad se pueden ver y descargar en pdf. A su vez se ha implementado el boton "Exportar a pdf" en la impresion de ordenes de publicidad.</p>
+        <p>13-06-13:<br>Las ordenes de publicidad. Por ser documentos comerciales, contratos e inamobibles.</p>
+        <p>07-06-13:<br>Se ha modificado la forma de cambiar la cantidad de registros mostrados en un listado, ahora funciona con el ingreso de un numero y un enter (implementación de javascript en los listados).</p>
+        <p>05-06-13:<br>Agregada a la orden de publicidad el módulo de confirmación de los datos ingresados.</p>
+        <p>03-06-13:<br>El módulo de orden de publicidad ya tiene separadas las pautas por emisoras y por tarifas. Y solo muestra las emisoras con pautas definidas.</p>
+        <p>05-04-13:<br>Se ha modificado el modulo de seguridad, para que las agencias solo puedan formular ordenes de publicidad y clientes; los administradores seguiran con las funciones completas.</p>
+        <p>04-04-13:<br>Se ha modificado la página principal del sistema, ahora tiene accesos directos a cada una de las altas disponibles. También ha sido agregado el módulo de checkeo de ordenes de publicidad, cada vez que un usuario ingresa a la página principal, automaticamente se muestran cuales son las ordenes de publicidad pendientes de pago.</p>
+        <p>03-04-13:<br>Se ha modificado el menú principal, ahora se muestra de forma más ordenada y modularizada según lo especificado por el cliente.</p>
+        <p>18-03-13:<br>Se ha implementado la barra de acciones en los listados para que la nevegabilidad sea más productiva. También ahora es posible editar cada uno de los items seleccionados.</p>
+    {% endif %}
+
+    {% if page == 5 %}
+        <p>16-03-13:<br>Para la mejor utilización del servicio, se ha implementado el modulo <strong>tooltip</strong> con instrucciones para el usuario en los formularios.</p>
+        <p>12-03-13:<br>Se ha implementado el módulo de búsqueda incremental en aquellos formularios que contienen el campo <strong>Ciudad</strong>.</p>
+        <p>10-03-13:<br>Se ha implementado el módulo de facturación (incluido en el la impresión de recibos y facturas), los invitamos a probarlos en:<br><a href="{{ path('insertFacturas') }}"><span id="underlined">Facturas</span></a><br><a href="{{ path('insertRecibos') }}"><span id="underlined">Recibos</span></a></p>
+    {% endif %}
+</div>
+
+<p>&nbsp;</p>
+
+{% set last = 5 %}
+
+{% if page != 1 %}
+<a href="{{ path('changelog', {page: 1}) }}" id="underlined">Primera</a>
+<a href="{{ path('changelog', {page: page-1}) }}" id="underlined">Anterior</a>
+{% endif %}
+<a href="{{ path('changelog', {page: 1}) }}">1</a>
+<a href="{{ path('changelog', {page: 2}) }}">2</a>
+<a href="{{ path('changelog', {page: 3}) }}">3</a>
+<a href="{{ path('changelog', {page: 4}) }}">4</a>
+<a href="{{ path('changelog', {page: 5}) }}">{{ last }}</a>
+{% if page != last %}
+<a href="{{ path('changelog', {page: page+1}) }}" id="underlined">Siguiente</a>
+<a href="{{ path('changelog', {page: last}) }}" id="underlined">Ultima</a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'TemplateBundle::template.html.twig' %}
+
+{% block title %}Grilla de publicidades{% endblock %}
+
+{% block content %}
+<table cellspacing="7px">
+    <tr><td>Horario de inicio</td><td>Horario de finalización</td><td>Programa</td>
+    {% for item in emisionprograma %}
+        <td>{{ item.getNombre }}</td>
+    {% endfor %}
+        </tr>
+        
+    {% for item in programas %}
+        <tr><td>{{ item.getDuracionDesde|date('g:ia') }}</td><td>{{ item.getDuracionHasta|date('g:ia') }}</td><td>{{ item.getNombre }}</td>{% render 'MediterraneoFMBundle:Transform:TransformGrilla' with {'param': item.getIdMencionPrograma } %}</tr>
+    {% endfor %}
+</table>
+{% endblock %}

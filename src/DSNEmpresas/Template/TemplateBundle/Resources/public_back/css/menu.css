@@ -1,0 +1,92 @@
+.wrapper-menu {
+    width:100%;
+	background:transparent;
+	border-radius:5px;
+	background: url('../images/menu-bg.png') repeat-x;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+    height: 40px;
+    overflow:visible;
+}
+
+.wrapper-menu-in {
+    z-index: 100;
+    width: 810px;
+    margin: 0 auto 0 auto;
+    margin-top: -41px;
+}
+
+#active-url {
+    text-decoration: none;
+    background-color: #2b50c6;
+    border-radius: 5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+
+#navigation li a#active-url {
+    font-weight: bold;
+}
+
+#navigation ul,#navigation li { list-style:none; padding:0; margin:0; display:inline; }
+
+#navigation ul li{ float:left; position:relative; padding: 2px 2px 0px 2px;}
+
+#navigation ul li a {
+    transition: background 1s;
+}
+
+#navigation ul ul li {
+    transition: background 1s;
+}
+
+#navigation ul li:hover>ul{ opacity: 1; position:absolute; top:99%; left:0; }
+#navigation ul ul li:hover>ul{ opacity: 1; position:absolute; top:0; left:100%;  }
+
+#navigation ul li a{
+    display:block;
+    padding:8px 12px;
+    margin:1px;
+    /* font-size:18px;
+    white-space:nowrap; */
+    border-radius:3px;
+}
+
+#navigation ul li ul li a {
+    width: 150px;
+}
+
+#navigation li a:hover{ background:#2b50c6;}
+#navigation ul ul{
+    width: 180px;
+    position:absolute;
+    top:-99999px;
+    left:0;
+    opacity: 0; /* Hide sub level */
+    -webkit-transition: opacity .4s ease-in-out;
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    z-index:497;
+    background:#466ef3;
+    padding: 2px;
+    border:1px solid #444;
+    border-top:none;
+    box-shadow:#111 0 3px 4px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+}
+#navigation ul ul ul {
+    width: 180px;
+    position:absolute;
+    top:-99999px;
+    left:100%;
+    opacity: 0;
+    -webkit-transition: opacity .4s ease-in-out; /* Hide sub levels */
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    border-radius:6px;
+    border:1px solid #444;
+}
+
+#navigation ul li:hover>ul{ opacity: 1; position:absolute; top:99%; left:0; }
+#navigation ul ul li:hover>ul{ position:absolute; top:0; left:100%; opacity: 1; z-index:497;}

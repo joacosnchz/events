@@ -1,0 +1,39 @@
+insertAsistentes:
+    pattern:  /{defAsistentes}
+    defaults: { _controller: AsistentesBundle:Default:insert, defAsistentes: null }
+insertAsistencia:
+    pattern:  /admin/asistencia/new
+    defaults: { _controller: AsistentesBundle:Default:insertAsistencia }
+showAsistentes:
+    pattern:  /admin/asistentes/show/{page}
+    defaults: { _controller: AsistentesBundle:Default:show, page: 1 }
+showAsistente:
+    pattern:  /admin/asistente/show/{id}
+    defaults: { _controller: AsistentesBundle:Default:showOne }
+generateListadoPdf:
+    pattern:  /admin/exportar-pdf/listado/{id}
+    defaults: { _controller: AsistentesBundle:Default:generateListadoPdf }
+generateCertificadosPdf:
+    pattern:  /admin/exportar-pdf/certificados/{id}
+    defaults: { _controller: AsistentesBundle:Default:generateCertificadosPdf }
+cambiarAsistencia:
+    pattern:  /admin/asistente/cambiarAs/{id}
+    defaults: { _controller: AsistentesBundle:Default:cambiarAsistencia }
+insertCoordenadas:
+    pattern:  /admin/coordenadas/new
+    defaults: { _controller: AsistentesBundle:Coordenadas:insert }
+showCoordenada:
+    pattern:  /admin/coordenada/show/{id}
+    defaults: { _controller: AsistentesBundle:Coordenadas:showOne }
+showCoordenadas:
+    pattern:  /admin/coordenadas/show/{page}
+    defaults: { _controller: AsistentesBundle:Coordenadas:show, page: 1 }
+deleteCoordenadas:
+    pattern:  /admin/coordenada/delete/{id}
+    defaults: { _controller: AsistentesBundle:Coordenadas:delete }
+cambiarImpresion:
+    pattern:  /admin/asistente/cambiarIm/{id}
+    defaults: { _controller: AsistentesBundle:Default:cambiarImpresion }
+prueba:
+    pattern:  /adm/test
+    defaults: { _controller: AsistentesBundle:Test:test }

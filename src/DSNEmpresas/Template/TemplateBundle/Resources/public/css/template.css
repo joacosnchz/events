@@ -1,0 +1,117 @@
+/*** General Comienzo ***/
+body {
+    color:#FFF;
+	text-align:left;
+	font-family:sans-serif;
+	background:#F5F5E8  none repeat scroll 0 0;
+}
+a {
+	text-decoration:none
+}
+a {
+	color:#FFF
+}
+a:active {
+	color:#FFF;
+}
+a:hover {
+	color:#FFF;
+	text-decoration:none
+}
+a:visited {
+	color:#FFF
+}
+#space {
+	height:0.09375em;
+}
+#colorred {
+	color:red;
+}
+#bigspace {
+	height:0.5em;
+}
+#back:hover {
+	background: url(../images/menu-bg.png) repeat-x;
+	border-radius: 0.3125em;
+}
+#required {
+    font-weight: bold;
+    color:red;
+}
+#id {
+    float:right;
+    margin-top: -9.375em;
+}
+#texto {
+    width:6.25em;
+    max-width:6.25em;
+    display:block;
+    word-wrap: break-word;
+}
+
+.form tr {
+    height:2em;
+}
+
+#underlined {
+    text-decoration: underline;
+}
+
+#success {
+    background: url(../images/success-bg.png) repeat-x;
+    border: solid 0.0625em #42DE23;
+    border-radius: 0.3125em;
+    padding: 0.0625em;
+}
+
+#error {
+   background: url(../images/error-bg.png) repeat;
+   border: solid 0.0625em #F01111;
+   border-radius: 0.3125em;
+   padding: 0.0625em; 
+}
+
+#boxhome {
+    text-align: center;
+    border-radius: 0.3125em;
+    background-color: 87A3FF;
+    box-shadow: 0px 0px 0.3125em #000;
+    width: 6.25em;
+    transition:box-shadow 1.2s;
+    -moz-transition:box-shadow 1.2s;
+    -webkit-transition:box-shadow 1.2s;
+    -ms-transition:box-shadow 1.2s;
+    -o-transition:box-shadow 1.2s;
+}
+
+#boxhome:hover {
+    text-align: center;
+    border-radius: 0.3125em;
+    border-bottom-right-radius: 0.9375em;
+    box-shadow-color: 87A3FF;
+    box-shadow: 0px 0px 0.9375em #000;
+    width: 6.25em;
+}
+
+#txthome {
+    font-size: small;
+    text-align: center;
+}
+
+#salto {
+    PAGE-BREAK-AFTER: always;
+}
+
+button:hover {
+	box-shadow: 0px 0px 10px #84a3ff;
+}
+
+input:focus, textarea:focus, select:focus, option:focus {
+	box-shadow: 0px 0px 10px  #84a3ff;
+}
+
+.whiteback {
+    background-color: #FFF;
+    border-radius: 2px;
+}
+/*** General Final ***/

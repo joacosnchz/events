@@ -1,0 +1,35 @@
+/*** Footer Comienzo ***/
+.wrapper-footer {
+	height:4.5em;
+	width:82.5%;
+	background: url('../images/bottom.jpg') no-repeat;
+	border-bottom-left-radius:8px;
+	border-bottom-right-radius:8px;
+	margin: 0 auto 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+	.wrapper-footer {
+		background: none;
+	}
+}
+
+@media screen and (max-device-width: 480px) {
+	.wrapper-footer {
+		background: none;
+	}
+}
+
+.foot {
+	color:#FFFFFF;
+}
+.foot a {
+	color:#FF8E90;
+}
+.foot a:hover {
+	color:#FFFFFF;
+}
+.linkfoot:hover {
+	text-decoration:underline;
+}
+/*** Footer Final ***/

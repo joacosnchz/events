@@ -1,0 +1,27 @@
+{% extends 'TemplateAsociacionBundle::template.html.twig' %}
+
+{% block title %}{{ asistente.getApellido }}, {{ asistente.getNombre }}{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+{% block content %}
+
+	<form action="{{ path('showAsistente', {'id': asistente.getId}) }}" method="post" {{ form_enctype(form) }}>
+		<table>
+			<tr><th>Edición de asistentes</th></tr>
+			{% for form in form %}
+				<tr>
+					<td>{{ form_label(form) }}</td><td>{{ form_widget(form) }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+		<hr>
+
+		<p>Los campos marcados con asterísco <span id="required">(*)</span> son obligatorios</p>
+		<button type="submit">Aceptar</button>&nbsp;<button onclick="window.location='{{ path('showAsistentes') }}'">Cancelar</button>
+	</form>
+
+{% endblock %}

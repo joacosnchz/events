@@ -1,0 +1,22 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: mediterraneofm
+    database_user: jsanchezdsn
+    database_password: Libre9papu
+
+    database_driver2: pdo_mysql
+    database_host2: 127.0.0.1
+    database_port2: null
+    database_name2: asociacionp
+    database_user2: jsanchezdsn
+    database_password2: Libre9papu
+    
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: sistemaradiomediterraneo@gmail.com
+    mailer_password: Libre9papu
+    locale: es
+    secret: ThisTokenIsNotSoSecretChangeIt

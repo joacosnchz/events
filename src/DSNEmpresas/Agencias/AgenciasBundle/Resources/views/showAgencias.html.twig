@@ -1,0 +1,54 @@
+{% extends 'ListadosBundle::listados.html.twig' %}
+
+{% block title %}Lista de agencias{% endblock %}
+
+{% block entidad %}agencias{% endblock %}
+
+{% block datos %}<td>Nombre</td><td>Apellido</td><td id="option">Dirección</td><td>Ciudad</td><td id="option">Teléfono comercial</td><td id="option">Celular</td><td>Estado</td>{% endblock %}
+
+{% block datos_lista %}
+<td><input type="checkbox" name="link[]" value2="{{ item.getNombre }}-{{ item.getApellido }}" value="{{ item.getIdAgencia }}" id="{{ item.getIdAgencia }}" class="tf"></td>
+<td><a id="underlined" href="{{ path('showAgencia', {'nombrea': item.getIdAgencia, 'nombre': item.getNombre, '_format': 'html'}) }}">{{ item.getNombre }}</a></td>
+<td><a id="underlined" href="{{ path('showAgencia', {'nombrea': item.getIdAgencia, 'nombre': item.getApellido, '_format': 'html'}) }}">{{ item.getApellido }}</a></td>
+<td id="option">{{ item.getDireccion }}</td>
+<td id="option">{{ item.getIdCiudad.getNombre }}</td>
+<td id="option">{{ item.getTelefonoComercial }}</td>
+<td id="option">{{ item.getCelular }}</td>
+<td align="center">{% if item.getIsActive == 1 %}<img src="{{ asset('bundles/template/images/tick.png') }}" />{% else %}<img src="{{ asset('bundles/template/images/publish_x.png') }}" />{% endif %}</td>
+{% endblock %}
+
+{% block botones %}
+<td><button name="nuevo" onclick="window.location='{{ path('insertAgencias') }}'" />Nuevo</button></td>
+<td><button id="borrar">Borrar</button>
+<td><button id="desactivar">Cambiar estado</button></td>
+<td><button id="editar">Editar</button></td>
+<td><button id="selectAll">Seleccionar todo</button</td>
+
+<script>
+$(function () {
+    $('#selectAll').toggle(
+        function() {
+            $('#list .tf').prop('checked', true);
+        },
+        function() {
+            $('#list .tf').prop('checked', false);
+        }
+    );
+});
+</script>
+{% endblock %}
+
+{% block mostrar %}
+Mostrar: 
+<form name="Agencias" action="{{ path('listado', {'entidad': 'Agencias', 'page': 1}) }}" method="POST">
+<input id="Agencias" name="Agencias" value="{{ app.session.get('Agencias') }}" size="1" maxlength="3">
+</form>
+{% endblock %}
+
+{% block pages %}{{ paginate(pager, 'showAgencias') }}{% endblock %}
+
+{% block borrar_route %}var route = "{{ path('deleteAgencia', { 'id': "PLACEHOLDER" }) }}";{% endblock %}
+
+{% block editar_route %}var route = "{{ path('showAgencia', { 'nombrea': "PLACEHOLDER", 'nombre': "PLACEHOLDER2", '_format': 'html' }) }}";{% endblock %}
+
+{% block desactivar_route %}var route = "{{ path('desactivarAgencia', { 'id': "PLACEHOLDER" }) }}";{% endblock %}

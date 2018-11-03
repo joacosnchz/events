@@ -1,0 +1,73 @@
+<table class="resp" style="color: black;">
+    <thead>
+        <tr><td>Vencidas:</td></tr>
+    </thead>
+    <tbody>
+        <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+        {% for item4 in ordenesmesant %}
+            {% if item4.getIdOrdenPub.estado == 1 %}
+                {% if item4.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+                    <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item4.getIdOrdenPub }) }}" id="underlined">{{ item4.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item4.getIdOrdenPub.getIdCliente, 'nombre2': item4.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item4.getIdOrdenPub.getIdCliente.getNombre }}, {{ item4.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item4.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td>{{ item4.Total }}</td></tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
+
+<hr>
+
+<table class="resp" style="color: black;">
+    <thead>
+        <tr><td>Vencen hoy:</td></tr>
+    </thead>
+    <tbody>
+        <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+        {% for item in ordenespub %}
+            {% if item.getIdOrdenPub.estado == 1 %}
+                {% if item.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+                    <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item.getIdOrdenPub }) }}" id="underlined">{{ item.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item.getIdOrdenPub.getIdCliente, 'nombre2': item.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item.getIdOrdenPub.getIdCliente.getNombre }}, {{ item.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td>{{ item.Total }}</td></tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
+
+<hr>
+
+<table class="resp" style="color: black;">
+    <thead>
+        <tr><td>Vencen este mes:</td></tr>
+    </thead>
+    <tbody>
+        <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+        {% for item2 in ordenesmes %}
+            {% if item2.getIdOrdenPub.estado == 1 %}
+                {% if item2.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+                    <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item2.getIdOrdenPub }) }}" id="underlined">{{ item2.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item2.getIdOrdenPub.getIdCliente, 'nombre2': item2.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item2.getIdOrdenPub.getIdCliente.getNombre }}, {{ item2.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item2.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td>{{ item2.Total }}</td></tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
+
+<hr>
+
+<table class="resp" style="color: black;">
+    <thead>
+        <tr><td>Vencen el mes siguiente:</td></tr>
+    </thead>
+    <tbody>
+        <tr><td>Nro. de orden</td><td>Cliente</td><td>Emisora</td><td>Monto a cobrar</td></tr>
+        {% for item3 in ordenesmessig %}
+            {% if item3.getIdOrdenPub.estado == 1 %}
+                {% if item3.getIdOrdenPub.getIdAgencia == app.user.idagencia %}
+                    <tr><td><a href="{{ path('showOrdenPub', { 'nombre': item3.getIdOrdenPub }) }}" id="underlined">{{ item3.getIdOrdenPub.getNroOrdenPub }}</a></td><td><a id="underlined" href="{{ path('showCliente', {'nombre': item3.getIdOrdenPub.getIdCliente, 'nombre2': item3.getIdOrdenPub.getIdCliente.getNombre, '_format': 'html'}) }}">{{ item3.getIdOrdenPub.getIdCliente.getNombre }}, {{ item3.getIdOrdenPub.getIdCliente.getApellido }}</a></td><td>{{ item3.getIdCostoTarifas.getIdTarifa.getIdEmisora.getNombre }}</td><td>{{ item3.Total }}</td></tr>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>

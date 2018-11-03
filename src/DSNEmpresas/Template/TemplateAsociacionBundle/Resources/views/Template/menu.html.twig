@@ -1,0 +1,39 @@
+{% block menu %}
+
+    <nav class="wrapper-menu-in" id="navigation">
+        <ul>
+            <li>
+                {% if app.request.attributes.get('_route') == 'insertAsistentes' %}
+                    <a href="{{ path('insertAsistentes') }}" id="active-url">Pre-inscipcion</a>
+                {% else %}
+                	<a href="{{ path('insertAsistentes') }}">Pre-inscipcion</a>
+                {% endif %}
+            </li>
+            <li>
+	            {% if app.request.attributes.get('_route') == 'showAsistentes'
+                    or  app.request.attributes.get('_route') == 'insertAsistencia' %}
+	            	<a href="#" id="active-url">Usuarios</a>
+            	{% else %}
+            		<a href="#">Usuarios</a>
+            	{% endif %}
+            	<ul>
+                    <li><a href="{{ path('insertAsistencia') }}">Ingresar asistencias</a></li>
+                    <li><a href="{{ path('showAsistentes') }}">Lista de asistentes</a></li>
+            	</ul>
+            </li>
+            <li>
+                {% if app.request.attributes.get('_route') == 'showCoordenadas' %}
+                    <a href="#" id="active-url">Admin</a>
+                {% else %}
+                        <a href="#">Admin</a>
+                {% endif %}
+                <ul>
+                    <li><a href="{{ path('insertCoordenadas') }}">Ingresar coordenadas</a></li>
+                    <li><a href="{{ path('showCoordenadas') }}">Lista de coordenadas</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+{% endblock %}

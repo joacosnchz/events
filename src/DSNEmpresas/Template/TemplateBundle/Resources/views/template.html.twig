@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+        <title>{% block title %}{% endblock %} - Radio Mediterraneo</title>
+        {% block css %}
+        <!-- Template assets -->
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/x-icon" />
+        <link href="{{ asset('bundles/template/css/template.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/content.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/header.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/menu.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/footer.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/print.css') }}" rel="stylesheet" type="text/css" media="print" />
+        <!-- Template assets ending -->
+        <link href="{{ asset('bundles/template/css/global.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('bundles/template/css/jquery-ui-1.9.2.custom.css') }}" rel="stylesheet" />
+        <link href="{{ asset('bundles/template/css/jquery-ui-1.9.2.custom.min.css') }}" rel="stylesheet" />
+        {% if app.session.get('Emisoras') %}{% else %}{{ app.session.set('Emisoras', 10) }}{% endif %}
+        {% if app.session.get('Tarifas') %}{% else %}{{ app.session.set('Tarifas', 10) }}{% endif %}
+        {% if app.session.get('Responsables') %}{% else %}{{ app.session.set('Responsables', 10) }}{% endif %}
+        {% if app.session.get('pophome') %}{% else %}{{ app.session.set('pophome', 0) }}{% endif %}
+        {% if app.session.get('clientescant') %}{% else %}{{ app.session.set('clientescant', 10) }}{% endif %}
+        {% if app.session.get('pautascant') %}{% else %}{{ app.session.set('pautascant', 10) }}{% endif %}
+        {% if app.session.get('Agencias') %}{% else %}{{ app.session.set('Agencias', 10) }}{% endif %}
+        {% if app.session.get('ordenescant') %}{% else %}{{ app.session.set('ordenescant', 10) }}{% endif %}
+        {% if app.session.get('Facturas') %}{% else %}{{ app.session.set('Facturas', 10) }}{% endif %}
+        {% if app.session.get('Recibos') %}{% else %}{{ app.session.set('Recibos', 10) }}{% endif %}
+        {% if app.session.get('Programas') %}{% else %}{{ app.session.set('Programas', 10) }}{% endif %}
+        {% if app.session.get('Programaciones') %}{% else %}{{ app.session.set('Programaciones', 10) }}{% endif %}
+        {% if app.session.get('Liquidaciones') %}{% else %}{{ app.session.set('Liquidaciones', 10) }}{% endif %}
+        {% if app.session.get('TiposMenciones') %}{% else %}{{ app.session.set('TiposMenciones', 10) }}{% endif %}
+        {% if app.session.get('Comisiones') %}{% else %}{{ app.session.set('Comisiones', 10) }}{% endif %}
+        {% endblock %}
+
+		{# {% include 'TemplateBundle::analytics.html.twig' %} #}
+        <script src="{{ asset('bundles/template/js/jquery-1.8.3.js') }}"></script>
+        <script src="{{ asset('bundles/template/js/jquery-ui-1.9.2.custom.js') }}"></script>
+        {% block js %}
+       
+        {% endblock %}
+    </head>
+    <body>
+            {% block usermenu %}{% include 'TemplateBundle:Template:user-menu.html.twig' %}{% endblock %}
+        
+            {% block header %}{% include 'TemplateBundle:Template:header.html.twig' %}{% endblock %}
+            
+            <div class="wrapper-menu">
+        {% block menu %}{% include 'TemplateBundle:Template:menu.html.twig' %}{% endblock %}
+                </div>
+            
+            
+            <div class="wrapper-content">
+                
+                {% if app.user %}
+                    {% if app.user.isActive == 0 or app.user.IdAgencia.isActive == 0 %}
+                        <div id="error">Este usuario ha sido desactivado o baneado por alguna razon; o la agencia con la que trabaja no está activa en este momento.
+                            <br>
+                        Porfavor contactese con el administrador del sistema (joaquinsanchez@dsnempresas.com.ar) para poder solucionar su problema,
+                        o ver cuales son las causas de él. 
+                        </div>
+                    {% else %}
+                        {% block content %}{% endblock %}
+                    {% endif %}
+                {% else %}
+                        {% block login %}{% endblock %}
+                {% endif %}
+            </div>
+            
+
+                <footer class="wrapper-footer">
+            {% block footer %}{% include 'TemplateBundle:Template:footer.html.twig' %}{% endblock %}
+                    </footer>
+            
+                </body>
+            </html>

@@ -1,0 +1,23 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\TiposDocumentos:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        tipoMovimiento:
+            type: string
+            length: '1'
+            column: TipoMovimiento
+        descripcion:
+            type: string
+            length: '20'
+            column: Descripcion
+        leyenda:
+            type: string
+            length: '10'
+            column: Leyenda
+            unique: true
+    lifecycleCallbacks: {  }

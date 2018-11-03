@@ -1,0 +1,38 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\Pagares:
+    type: entity
+    table: null
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nroPagare:
+            type: integer
+            column: nro_pagare
+            nullable: true
+        fechaEmision:
+            type: date
+            column: fecha_emision
+        fechaCobro:
+            type: date
+            column: fecha_cobro
+        totalLetras:
+            type: string
+            length: 255
+            column: total_letras
+            nullable: true
+        total:
+            type: float
+    manyToOne:
+        idOrdenpub:
+            targetEntity: OrdenPub
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ordenpub:
+                    referencedColumnName: id_ordenpub
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

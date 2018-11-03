@@ -1,0 +1,7 @@
+parameters:
+#    asociacion_p.example.class: DSNEmpresas\AsociacionP\AsociacionPBundle\Example
+
+services:
+#    asociacion_p.example:
+#        class: %asociacion_p.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

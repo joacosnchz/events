@@ -1,0 +1,33 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\OrdenEmisoras:
+    type: entity
+    table: orden_emisoras
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        id_emisora:
+            targetEntity: Emisoras
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_emisora:
+                    referencedColumnName: id_emisora
+                    onDelete: CASCADE
+            orphanRemoval: false
+        id_ordenpub:
+            targetEntity: OrdenPub
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_ordenpub:
+                    referencedColumnName: id_ordenpub
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

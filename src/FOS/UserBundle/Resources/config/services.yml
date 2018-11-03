@@ -1,0 +1,15 @@
+parameters:
+    ccdn_user_security.component.authentication.handler.login_success_handler.class: FOS\UserBundle\Component\Authentication\Handler\LoginSuccessHandler
+    ccdn_user_security.component.authentication.handler.logout_success_handler.class: FOS\UserBundle\Component\Authentication\Handler\LogoutSuccessHandler
+    
+services:
+    ccdn_user_security.component.authentication.handler.login_success_handler:
+        class:  %ccdn_user_security.component.authentication.handler.login_success_handler.class%
+        arguments:  [@router, @security.context, @service_container]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+    ccdn_user_security.component.authentication.handler.logout_success_handler:
+        class: %ccdn_user_security.component.authentication.handler.logout_success_handler.class%
+        arguments: [@security.context, @router, @service_container]
+        tags:
+        - { name: 'monolog.logger', channel: 'security' }

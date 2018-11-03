@@ -1,0 +1,31 @@
+/*** Header Comienzo ***/
+.wrapper-header {
+        width: 833px;
+	margin: 0 auto 0 auto;
+}
+.tableHeader {
+	width:100%;
+	border:0px;
+	text-decoration:none;
+	margin: 0 auto 0 auto;
+	height:182px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+}
+
+.tableHeader {
+    
+}
+
+.wrapper-user-menu {
+    width: 833px;
+    background:url(../images/menu-bg.png);
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+}
+
+.wrapper-user-menu li{
+    text-decoration: none;
+    display:inline-block;
+}
+/*** Header Final ***/

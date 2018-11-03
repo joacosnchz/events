@@ -1,0 +1,74 @@
+MediterraneoFM\MediterraneoFMBundle\Entity\OrdenPub:
+    type: entity
+    table: OrdenPub
+    fields:
+        id_ordenpub:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: id_ordenpub
+            generator:
+                strategy: IDENTITY
+        nro_ordenpub:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: nro_ordenpub
+        fecha:
+            type: date
+            nullable: false
+            column: fecha
+        texto_publicidad:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+            column: texto_publicidad
+        observaciones:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+        id_tarifa:
+            type: string
+            length: 255
+            fixed: false
+            nullable: true
+            column: id_tarifa
+        total:
+            type: float
+            unsigned: false
+            nullable: true
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+        pagado:
+            type: boolean
+            nullable: false
+        liquidado:
+            type: boolean
+            nullable: false
+    manyToOne:
+        id_cliente:
+            targetEntity: Clientes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_cliente:
+                    referencedColumnName: id_cliente
+                    onDelete: CASCADE
+            orphanRemoval: false
+        id_agencia:
+            targetEntity: Agencias
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_agencia:
+                    referencedColumnName: id_agencia
+                    onDelete: CASCADE
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    responsables.example.class: DSNEmpresas\Responsables\ResponsablesBundle\Example
+
+services:
+#    responsables.example:
+#        class: %responsables.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
